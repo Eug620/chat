@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 14:49:17
- * @LastEditTime : 2021-03-09 16:06:54
+ * @LastEditTime : 2021-03-09 16:13:32
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/useApp.js
@@ -23,5 +23,9 @@ export const state = reactive({
     'Your Profile',
     'Settings',
     'Sign out'
-  ]
+  ],
+  user: {
+    userName: '张三',
+    email: 'QQ.com'
+  }
 })
