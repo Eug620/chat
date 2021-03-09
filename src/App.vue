@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-03-09 14:45:13
+ * @LastEditTime : 2021-03-09 14:56:26
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/App.vue
@@ -17,16 +17,18 @@
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
+                <a
+                  v-for="tab in tabsList"
+                  :key="tab"
+                  :href="'#' + tab"
+                  @click="() => activeTabs = tab"
+                  :class="activeTabs === tab
+                    ? 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
+                    : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'"
+                >
+                  {{ tab }}
+                </a>
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
-
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reports</a>
               </div>
             </div>
           </div>
@@ -156,10 +158,16 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, toRefs } from 'vue'
+import { state } from './useApp'
 export default defineComponent({
   name: 'App',
   components: {
+  },
+  setup () {
+    return {
+      ...toRefs(state)
+    }
   }
 })
 </script>
