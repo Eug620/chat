@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 14:49:17
- * @LastEditTime : 2021-03-09 14:51:16
+ * @LastEditTime : 2021-03-09 16:06:54
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/useApp.js
@@ -16,5 +16,12 @@ export const state = reactive({
     'Projects',
     'Calendar',
     'Reports'
+  ],
+  mobelShowMenu: true,
+  showUserInfo: false,
+  useInfoSetting: [
+    'Your Profile',
+    'Settings',
+    'Sign out'
   ]
 })
