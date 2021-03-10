@@ -1,15 +1,15 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-10 18:57:36
+ * @LastEditTime : 2021-03-10 19:50:22
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
 -->
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="chat-layout-cantainer">
-    <nav class="bg-white shadow-md">
+  <div class="chat-layout-cantainer bg-gray-100 fixed w-full h-full">
+    <nav class="bg-white shadow-md absolute w-full">
       <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
