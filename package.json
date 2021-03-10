@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:p": "vite build && mv dist/* /usr/local/nginx/html/"
   },
   "dependencies": {
     "axios": "^0.21.1",
