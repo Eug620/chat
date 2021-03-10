@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-03-09 16:37:22
+ * @LastEditTime : 2021-03-10 11:09:40
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/App.vue
@@ -174,7 +174,11 @@ export default defineComponent({
   components: {
   },
   setup () {
-    server.Login({})
+    server.SearchUserList()
+    server.Login({
+      userName: 'eug222222',
+      password: 'eug222222'
+    })
     return {
       ...toRefs(state)
     }
