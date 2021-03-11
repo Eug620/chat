@@ -1,14 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:57:32
- * @LastEditTime : 2021-03-11 15:37:42
+ * @LastEditTime : 2021-03-11 16:41:37
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/hot-list/index.vue
 -->
 <template>
   <chat-container>
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col m-4">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
