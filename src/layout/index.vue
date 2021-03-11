@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-10 19:50:22
+ * @LastEditTime : 2021-03-11 11:14:12
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { toRefs } from 'vue'
+import { toRefs, getCurrentInstance } from 'vue'
 import {
   state,
   useActiveMenuClass,
@@ -79,6 +79,8 @@ import {
 } from './useLayout'
 export default {
   setup () {
+    state.currentVM = getCurrentInstance().proxy
+    state.activeMenu = state.currentVM.$route.name || 'Dashboard'
     return {
       ...toRefs(state),
       useActiveMenuClass,

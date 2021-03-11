@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-10 18:57:14
+ * @LastEditTime : 2021-03-11 11:11:45
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -10,6 +10,7 @@
 import { reactive } from "vue";
 
 export const state = reactive({
+  currentVM: null,
   activeMenu: 'Dashboard',
   menuList: [
     'Dashboard',

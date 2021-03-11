@@ -1,13 +1,15 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-03-10 20:01:54
+ * @LastEditTime : 2021-03-11 11:02:17
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
 -->
 <template>
-  <chat-container>123</chat-container>
+  <chat-container>
+    <chat-card>index</chat-card>
+  </chat-container>
 </template>
 
 <script>
