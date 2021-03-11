@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-11 11:11:45
+ * @LastEditTime : 2021-03-11 14:21:14
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -14,7 +14,7 @@ export const state = reactive({
   activeMenu: 'Dashboard',
   menuList: [
     'Dashboard',
-    'hotList'
+    'HotList'
   ],
   isShowUserInfo: false,
   userInfoSetting: [
