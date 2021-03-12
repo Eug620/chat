@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:23:25
- * @LastEditTime : 2021-03-11 11:25:25
+ * @LastEditTime : 2021-03-11 17:57:59
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/router/index.js
@@ -25,6 +25,11 @@ const routes = [
         path: 'HotList',
         name: 'HotList',
         component: () => import('/@/views/pages/hot-list/index.vue')
+      },
+      {
+        path: 'MarkdownEdit',
+        name: 'MarkdownEdit',
+        component: () => import('/@/views/pages/markdown-edit/index.vue')
       }
     ]
   },

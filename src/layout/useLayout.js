@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-11 14:21:14
+ * @LastEditTime : 2021-03-11 18:01:57
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -14,7 +14,8 @@ export const state = reactive({
   activeMenu: 'Dashboard',
   menuList: [
     'Dashboard',
-    'HotList'
+    'HotList',
+    'MarkdownEdit'
   ],
   isShowUserInfo: false,
   userInfoSetting: [
@@ -28,7 +29,7 @@ export const useActiveMenuClass = (current) => {
   if (current === state.activeMenu) {
     return "bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium"
   } else {
-    return "text-gray-300 hover:bg-gray-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+    return "text-black-300 hover:bg-black-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium"
   }
 }
 
