@@ -581,7 +581,7 @@ chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chokidar@^3.4.2:
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.4.2:
   version "3.5.1"
   resolved "https://registry.npm.taobao.org/chokidar/download/chokidar-3.5.1.tgz?cache=0&sync_timestamp=1610719375974&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchokidar%2Fdownload%2Fchokidar-3.5.1.tgz#ee9ce7bbebd2b79f49f304799d5468e31e14e68a"
   integrity sha1-7pznu+vSt59J8wR5nVRo4x4U5oo=
@@ -1601,6 +1601,11 @@ negotiator@0.6.2:
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
+neo-async@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
+  integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
+
 node-emoji@^1.8.1:
   version "1.10.0"
   resolved "https://registry.npm.taobao.org/node-emoji/download/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -2078,6 +2083,21 @@ safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=
+
+sass-loader@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.npm.taobao.org/sass-loader/download/sass-loader-11.0.1.tgz?cache=0&sync_timestamp=1612804548821&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsass-loader%2Fdownload%2Fsass-loader-11.0.1.tgz#8672f896593466573b904f47693e0695368e38c9"
+  integrity sha1-hnL4llk0Zlc7kE9HaT4GlTaOOMk=
+  dependencies:
+    klona "^2.0.4"
+    neo-async "^2.6.2"
+
+sass@^1.32.8:
+  version "1.32.8"
+  resolved "https://registry.npm.taobao.org/sass/download/sass-1.32.8.tgz?cache=0&sync_timestamp=1613687400541&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsass%2Fdownload%2Fsass-1.32.8.tgz#f16a9abd8dc530add8834e506878a2808c037bdc"
+  integrity sha1-8WqavY3FMK3Yg05QaHiigIwDe9w=
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
 
 selfsigned@^1.10.8:
   version "1.10.8"
