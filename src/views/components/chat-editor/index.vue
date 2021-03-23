@@ -276,6 +276,7 @@ export default {
       } else {
         state.isShowPreview = !state.isShowPreview;
       }
+      emit('update:isShowPreview', state.isShowPreview)
     };
     const useShowPreviewAll = () => {
       if (!state.isShowEdit && state.isShowPreview) {
@@ -285,9 +286,11 @@ export default {
         state.isShowEdit = false;
         state.isShowPreview = true;
       }
+      emit('update:isShowEdit', state.isShowEdit)
     };
     const useShowFullPage = () => {
       state.isFullPage = !state.isFullPage;
+      emit('update:isFullPage', state.isFullPage)
       let maxuseEditScrollHeight =
         document.querySelector(".mdEditor").scrollHeight -
         document.querySelector(".mdEditor").clientHeight;

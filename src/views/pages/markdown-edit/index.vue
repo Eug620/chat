@@ -11,11 +11,11 @@
     <div class="py-4 h-full w-full">
       <chat-editor
         v-model:mdValue="markedOption.mdValue"
-        :isFullPage="markedOption.isFullPage"
-        :isShowEdit="markedOption.isShowEdit"
-        :isShowPreview="markedOption.isShowPreview"
-        :isShowNav="markedOption.isShowNav"
-        :isShowIcon="markedOption.isShowIcon"
+        v-model:isFullPage="markedOption.isFullPage"
+        v-model:isShowEdit="markedOption.isShowEdit"
+        v-model:isShowPreview="markedOption.isShowPreview"
+        v-model:isShowNav="markedOption.isShowNav"
+        v-model:isShowIcon="markedOption.isShowIcon"
         @childevent="useMarkedEvent"
       />
     </div>
