@@ -106,11 +106,11 @@
           </div>
         </div>
       </div>
-      <div class="flex-grow-0 h-12 text-center flex m-4 w-3/12 px-4 bg-white shadow-md sm:rounded-2xl">
+      <!-- <div class="flex-grow-0 h-12 text-center flex m-4 w-3/12 px-4 bg-white shadow-md sm:rounded-2xl">
         <div class="flex-grow py-4 border-r-2 border-Gray-900">1</div>
         <div class="flex-grow py-4 border-r-2 border-Gray-900">2</div>
         <div class="flex-grow py-4">3</div>
-      </div>
+      </div> -->
     </div>
   </chat-container>
 </template>

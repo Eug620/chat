@@ -10,36 +10,30 @@
   <chat-container>
     <div class="py-4 h-full w-full">
       <chat-editor
-        :mdValuesP="msg.mdValue"
-        :fullPageStatusP="false"
-        :editStatusP="true"
-        :previewStatusP="true"
-        :navStatusP="true"
-        :icoStatusP="true"
-        @childevent="childEventHandler"
+        v-model:mdValue="markedOption.mdValue"
+        :isFullPage="markedOption.isFullPage"
+        :isShowEdit="markedOption.isShowEdit"
+        :isShowPreview="markedOption.isShowPreview"
+        :isShowNav="markedOption.isShowNav"
+        :isShowIcon="markedOption.isShowIcon"
+        @childevent="useMarkedEvent"
       />
     </div>
   </chat-container>
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { toRefs, getCurrentInstance } from "vue";
+import {
+  state,
+  useMarkedEvent
+} from './useMarkdown'
 export default {
   setup() {
-    const state = reactive({
-      msgShow: "要显示的内容",
-      dilogStatus: false,
-      msg: {
-        mdValue: "## Chat-Editor"
-      }
-    });
-    const childEventHandler = res => {
-      // res会传回一个data,包含属性mdValue和htmlValue，具体含义请自行翻译
-      state.msg = res;
-    };
+    state.currentVM = getCurrentInstance().proxy
     return {
       ...toRefs(state),
-      childEventHandler
+      useMarkedEvent
     };
   }
 };

@@ -7,65 +7,65 @@
  * @FilePath     : /chat/src/views/components/chat-editor/index.vue
 -->
 <template>
-  <div class="mdContainer" :class="{ fullPage: fullPageStatus }">
-    <div class="navContainer" v-if="navStatus">
-      <div class="nameContainer" v-if="icoStatusP" @click="happyDay">Editor</div>
+  <div class="mdContainer" :class="{ fullPage: isFullPage }">
+    <div class="navContainer" v-if="isShowNav">
+      <div class="nameContainer" v-if="isShowIcon" @click="useClickLogo">Editor</div>
       <div class="markContainer">
         <ul class="markListGroup">
-          <li class="markListItem" @click="addStrong" title="strong">
+          <li class="markListItem" @click="useAddStrong" title="strong">
             <b>B</b>
           </li>
-          <li class="markListItem" @click="addItalic" title="italic">
+          <li class="markListItem" @click="useAddItalic" title="italic">
             <i>I</i>
           </li>
-          <li class="markListItem" @click="addStrikethrough" title="strikethrough">
+          <li class="markListItem" @click="useAddStrikethrough" title="strikethrough">
             <i class="fa fa-strikethrough" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addHTitle(1)" title="H1-title">H1</li>
-          <li class="markListItem" @click="addHTitle(2)" title="H2-title">H2</li>
-          <li class="markListItem" @click="addHTitle(3)" title="H3-title">H3</li>
-          <li class="markListItem" @click="addHTitle(4)" title="H4-title">H4</li>
-          <li class="markListItem" @click="addHTitle(5)" title="H5-title">H5</li>
-          <li class="markListItem" @click="addHTitle(6)" title="H6-title">H6</li>
-          <li class="markListItem" @click="addLine" title="line">一</li>
-          <li class="markListItem" @click="addQuote" title="quote">
+          <li class="markListItem" @click="useAddHTitle(1)" title="H1-title">H1</li>
+          <li class="markListItem" @click="useAddHTitle(2)" title="H2-title">H2</li>
+          <li class="markListItem" @click="useAddHTitle(3)" title="H3-title">H3</li>
+          <li class="markListItem" @click="useAddHTitle(4)" title="H4-title">H4</li>
+          <li class="markListItem" @click="useAddHTitle(5)" title="H5-title">H5</li>
+          <li class="markListItem" @click="useAddHTitle(6)" title="H6-title">H6</li>
+          <li class="markListItem" @click="useAddLine" title="line">一</li>
+          <li class="markListItem" @click="useAddQuote" title="quote">
             <i class="fa fa-quote-left" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addCode">
+          <li class="markListItem" @click="useAddCode">
             <i class="fa fa-code" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addLink">
+          <li class="markListItem" @click="useAddLink">
             <i class="fa fa-link" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addImage">
+          <li class="markListItem" @click="useAddImage">
             <i class="fa fa-picture-o" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addTable" title="table">
+          <li class="markListItem" @click="useAddTable" title="table">
             <i class="fa fa-table" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addUl" title="ul-list">
+          <li class="markListItem" @click="useAddUl" title="ul-list">
             <i class="fa fa-list-ul" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="addOl" title="ol-list">
+          <li class="markListItem" @click="useAddOl" title="ol-list">
             <i class="fa fa-list-ol" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="fullPageFn" title="fullpage">
+          <li class="markListItem" @click="useShowFullPage" title="fullpage">
             <i class="fa fa-arrows-alt" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="previewFn" title="preview">
+          <li class="markListItem" @click="useShowPreview" title="preview">
             <i class="fa fa-eye-slash" :aria-hidden="isShowTools"></i>
           </li>
-          <li class="markListItem" @click="previewAllFn" title="previewAll">
+          <li class="markListItem" @click="useShowPreviewAll" title="previewAll">
             <i class="fa fa-eye" :aria-hidden="isShowTools"></i>
           </li>
         </ul>
       </div>
     </div>
-    <div class="mdBodyContainer" :class="{ noMenu: !navStatus }">
-      <div class="editContainer" v-if="editStatus">
-        <textarea name class="mdEditor" @keydown.9="tabFn" v-scroll="editScroll" v-model="input"></textarea>
+    <div class="mdBodyContainer" :class="{ noMenu: !isShowNav }">
+      <div class="editContainer" v-if="isShowEdit">
+        <textarea name class="mdEditor" @keydown.9="tabFn" v-scroll="useEditScroll" v-model="value"></textarea>
       </div>
-      <div class="previewContainer markdown-body" v-scroll="previewScroll" v-html="compiledMarkdown" v-if="previewStatus"></div>
+      <div class="previewContainer markdown-body" v-scroll="usePreviewScroll" v-html="useCompiledMarkdown" v-if="isShowPreview"></div>
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@
 import hljs from "highlight.js";
 import range from "./rangeFn.js";
 import marked from "marked";
-import { reactive, toRefs, computed } from "vue";
+import { reactive, toRefs, computed, watch } from "vue";
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -100,36 +100,49 @@ const insertContent = (val, that) => {
   } else {
     range.insertAfterText(textareaDom, val);
   }
-  that.input = document.querySelector(".mdEditor").value;
+  that.value = document.querySelector(".mdEditor").value;
 };
 export default {
   name: "chat-editor",
   props: [
-    "mdValuesP",
-    "fullPageStatusP",
-    "editStatusP",
-    "previewStatusP",
-    "navStatusP",
-    "icoStatusP"
+    "mdValue",
+    "isFullPage",
+    "isShowEdit",
+    "isShowPreview",
+    "isShowNav",
+    "isShowIcon"
   ],
-  setup(props) {
+  setup(props, { emit }) {
+    // 数据
     const state = reactive({
       isShowTools: true,
-      input: props.mdValuesP || "",
-      editStatus: Boolean(props.editStatusP),
-      previewStatus: Boolean(props.previewStatusP),
-      fullPageStatus: Boolean(props.fullPageStatusP),
-      navStatus: Boolean(props.navStatusP),
-      icoStatus: Boolean(props.icoStatusP),
-      maxEditScrollHeight: 0,
-      maxPreviewScrollHeight: 0
+      value: props.mdValue || "",
+      isShowEdit: Boolean(props.isShowEdit),
+      isShowPreview: Boolean(props.isShowPreview),
+      isFullPage: Boolean(props.isFullPage),
+      isShowNav: Boolean(props.isShowNav),
+      isShowIcon: Boolean(props.isShowIcon),
+      maxuseEditScrollHeight: 0,
+      maxusePreviewScrollHeight: 0
     });
-    if (!state.editStatus && !state.previewStatus) {
-      state.editStatus = true;
-      state.previewStatus = true;
+    
+    // emit
+    watch(
+      () => state.value,
+      (o) => {
+        emit('update:mdValue', o)
+      }
+    )
+
+    // 不展示编辑&&不展示预览
+    if (!state.isShowEdit && !state.isShowPreview) {
+      state.isShowEdit = true;
+      state.isShowPreview = true;
     }
+
+    // 
     const tabFn = evt => {
-      insertContent("    ", this);
+      insertContent("    ", state);
       // 屏蔽屌tab切换事件
       if (evt.preventDefault) {
         evt.preventDefault();
@@ -137,10 +150,14 @@ export default {
         evt.returnValue = false;
       }
     };
-    const addImage = evt => {
-      insertContent("![Vue](https://cn.vuejs.org/images/logo.png)", this);
+
+    // 插入图片
+    const useAddImage = evt => {
+      insertContent("![Vue](https://cn.vuejs.org/images/logo.png)", state);
     };
-    const addHTitle = index => {
+
+    // 插入标题
+    const useAddHTitle = index => {
       let tmp = "";
       switch (index) {
         case 1:
@@ -164,50 +181,54 @@ export default {
         default:
           break;
       }
-      insertContent(tmp, this);
+      insertContent(tmp, state);
     };
-    const addCode = () => {
+
+    // 插入代码
+    const useAddCode = () => {
       let textareaDom = document.querySelector(".mdEditor");
       let value = textareaDom.value;
       let point = range.getCursortPosition(textareaDom);
       let lastChart = value.substring(point - 1, point);
-      insertContent("```\n\n```", this);
+      insertContent("```\n\n```", state);
       if (lastChart != "\n" && value != "") {
         range.setCaretPosition(textareaDom, point + 5);
       } else {
         range.setCaretPosition(textareaDom, point + 4);
       }
     };
-    const addStrikethrough = () => {
+
+    // 
+    const useAddStrikethrough = () => {
       let textareaDom = document.querySelector(".mdEditor");
       let value = textareaDom.value;
       let point = range.getCursortPosition(textareaDom);
       let lastChart = value.substring(point - 1, point);
-      insertContent("~~~~", this);
+      insertContent("~~~~", state);
       if (lastChart != "\n" && value != "") {
         range.setCaretPosition(textareaDom, point + 3);
       } else {
         range.setCaretPosition(textareaDom, point + 2);
       }
     };
-    const addStrong = () => {
+    const useAddStrong = () => {
       let textareaDom = document.querySelector(".mdEditor");
       let value = textareaDom.value;
       let point = range.getCursortPosition(textareaDom);
       let lastChart = value.substring(point - 1, point);
-      insertContent("****", this);
+      insertContent("****", state);
       if (lastChart != "\n" && value != "") {
         range.setCaretPosition(textareaDom, point + 3);
       } else {
         range.setCaretPosition(textareaDom, point + 2);
       }
     };
-    const addItalic = () => {
+    const useAddItalic = () => {
       let textareaDom = document.querySelector(".mdEditor");
       let value = textareaDom.value;
       let point = range.getCursortPosition(textareaDom);
       let lastChart = value.substring(point - 1, point);
-      insertContent("**", this);
+      insertContent("**", state);
       if (lastChart != "\n" && value != "") {
         range.setCaretPosition(textareaDom, point + 2);
       } else {
@@ -218,107 +239,107 @@ export default {
       let textareaDom = document.querySelector(".mdEditor");
       let point = range.getCursortPosition(textareaDom);
     };
-    const addLine = () => {
-      insertContent("\n----\n", this);
+    const useAddLine = () => {
+      insertContent("\n----\n", state);
     };
-    const addLink = () => {
-      insertContent("[Vue](https://cn.vuejs.org/images/logo.png)", this);
+    const useAddLink = () => {
+      insertContent("[Vue](https://cn.vuejs.org/images/logo.png)", state);
     };
-    const addQuote = () => {
+    const useAddQuote = () => {
       let textareaDom = document.querySelector(".mdEditor");
       let value = textareaDom.value;
       let point = range.getCursortPosition(textareaDom);
       let lastChart = value.substring(point - 1, point);
-      insertContent("> ", this);
+      insertContent("> ", state);
       if (lastChart != "\n" && value != "") {
         range.setCaretPosition(textareaDom, point + 3);
       } else {
         range.setCaretPosition(textareaDom, point + 2);
       }
     };
-    const addTable = () => {
-      insertContent("\nheader 1 | header 2\n", this);
-      insertContent("---|---\n", this);
-      insertContent("row 1 col 1 | row 1 col 2\n", this);
-      insertContent("row 2 col 1 | row 2 col 2\n\n", this);
+    const useAddTable = () => {
+      insertContent("\nheader 1 | header 2\n", state);
+      insertContent("---|---\n", state);
+      insertContent("row 1 col 1 | row 1 col 2\n", state);
+      insertContent("row 2 col 1 | row 2 col 2\n\n", state);
     };
-    const addUl = () => {
-      insertContent("* ", this);
+    const useAddUl = () => {
+      insertContent("* ", state);
     };
-    const addOl = () => {
-      insertContent("1. ", this);
+    const useAddOl = () => {
+      insertContent("1. ", state);
     };
-    const previewFn = () => {
-      if (!state.editStatus) {
-        state.editStatus = true;
-        state.previewStatus = !state.previewStatus;
+    const useShowPreview = () => {
+      if (!state.isShowEdit) {
+        state.isShowEdit = true;
+        state.isShowPreview = !state.isShowPreview;
       } else {
-        state.previewStatus = !state.previewStatus;
+        state.isShowPreview = !state.isShowPreview;
       }
     };
-    const previewAllFn = () => {
-      if (!state.editStatus && state.previewStatus) {
-        state.editStatus = true;
-        state.previewStatus = true;
+    const useShowPreviewAll = () => {
+      if (!state.isShowEdit && state.isShowPreview) {
+        state.isShowEdit = true;
+        state.isShowPreview = true;
       } else {
-        state.editStatus = false;
-        state.previewStatus = true;
+        state.isShowEdit = false;
+        state.isShowPreview = true;
       }
     };
-    const fullPageFn = () => {
-      state.fullPageStatus = !state.fullPageStatus;
-      let maxEditScrollHeight =
+    const useShowFullPage = () => {
+      state.isFullPage = !state.isFullPage;
+      let maxuseEditScrollHeight =
         document.querySelector(".mdEditor").scrollHeight -
         document.querySelector(".mdEditor").clientHeight;
-      let maxPreviewScrollHeight =
+      let maxusePreviewScrollHeight =
         document.querySelector(".previewContainer").scrollHeight -
         document.querySelector(".previewContainer").clientHeight;
-      state.maxEditScrollHeight = maxEditScrollHeight;
-      state.maxPreviewScrollHeight = maxPreviewScrollHeight;
+      state.maxuseEditScrollHeight = maxuseEditScrollHeight;
+      state.maxusePreviewScrollHeight = maxusePreviewScrollHeight;
     };
-    const previewScroll = (e, position) => {
-      if (state.maxEditScrollHeight !== 0) {
-        let topPercent = position.scrollTop / state.maxPreviewScrollHeight;
+    const usePreviewScroll = (e, position) => {
+      if (state.maxuseEditScrollHeight !== 0) {
+        let topPercent = position.scrollTop / state.maxusePreviewScrollHeight;
         document.querySelector(".mdEditor").scrollTop =
-          state.maxEditScrollHeight * topPercent;
+          state.maxuseEditScrollHeight * topPercent;
       }
     };
-    const editScroll = (e, position) => {
-      if (state.maxPreviewScrollHeight !== 0) {
-        let topPercent = position.scrollTop / state.maxEditScrollHeight;
+    const useEditScroll = (e, position) => {
+      if (state.maxusePreviewScrollHeight !== 0) {
+        let topPercent = position.scrollTop / state.maxuseEditScrollHeight;
         document.querySelector(".previewContainer").scrollTop =
-          state.maxPreviewScrollHeight * topPercent;
+          state.maxusePreviewScrollHeight * topPercent;
       }
     };
-    const happyDay = () => {
-      window.open("https://github.com/ovenslove/vue-mdEditor");
+    const useClickLogo = () => {
+      // window.open("https://github.com/ovenslove/vue-mdEditor");
     };
-    const compiledMarkdown = computed(() => {
-      return marked(state.input, {
+    const useCompiledMarkdown = computed(() => {
+      return marked(state.value, {
         // sanitize: true
       });
     });
     return {
       ...toRefs(state),
-      happyDay,
-      addStrong,
-      addItalic,
-      addStrikethrough,
-      addHTitle,
-      addLine,
-      addQuote,
-      addCode,
-      addLink,
-      addImage,
-      addTable,
-      addUl,
-      addOl,
-      fullPageFn,
-      previewFn,
-      previewAllFn,
-      editScroll,
-      previewScroll,
-      compiledMarkdown
+      useClickLogo,
+      useAddStrong,
+      useAddItalic,
+      useAddStrikethrough,
+      useAddHTitle,
+      useAddLine,
+      useAddQuote,
+      useAddCode,
+      useAddLink,
+      useAddImage,
+      useAddTable,
+      useAddUl,
+      useAddOl,
+      useShowFullPage,
+      useShowPreview,
+      useShowPreviewAll,
+      useEditScroll,
+      usePreviewScroll,
+      useCompiledMarkdown
     }
   }
 }
@@ -363,7 +384,7 @@ export default {
       moz-user-select: -moz-none; 
       -moz-user-select: none; 
       -o-user-select:none; 
-      -khtml-user-select:none; /* you could also put this in a class */ 
+      -khtml-user-select:none; /* you could also put state in a class */ 
       -webkit-user-select:none;/* and add the CSS class here instead */ 
       -ms-user-select:none; 
       user-select:none;/**禁止选中文字*/ 
