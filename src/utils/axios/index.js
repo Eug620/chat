@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:25:28
- * @LastEditTime : 2021-03-10 14:39:30
+ * @LastEditTime : 2021-03-23 19:30:47
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/utils/axios/index.js
@@ -10,8 +10,8 @@ import Axios from 'axios'
 
 // 创建一个 axios 实例
 const service = Axios.create({
-  baseURL: process.env.VUE_APP_API,
-  // baseURL: 'http://47.93.229.170:3000',
+  // baseURL: process.env.VUE_APP_API,
+  baseURL: 'http://47.93.229.170:3000',
   timeout: 30 * 1000, // 请求超时时间
   withCredentials: true
 })
