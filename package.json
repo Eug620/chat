@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:p": "vite build && rm -rf /usr/local/nginx/html/* && mv dist/* /usr/local/nginx/html/"
+    "build:p": "vite build --mode production && rm -rf /usr/local/nginx/html/* && mv dist/* /usr/local/nginx/html/"
   },
   "dependencies": {
     "axios": "^0.21.1",
