@@ -17,6 +17,7 @@ export default {
         // 如果是 /lsbdb 打头，则访问地址如下
         '/user': {
           target: 'http://47.93.229.170:3000',
+        //   target: 'http://localhost:3000',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/user/, '/user')
         }

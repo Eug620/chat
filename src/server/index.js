@@ -7,7 +7,9 @@
  * @FilePath     : /chat/src/server/index.js
  */
 import user from './user'
+import article from './article'
 
 export default {
-  ...user
+  ...user,
+  ...article
 }

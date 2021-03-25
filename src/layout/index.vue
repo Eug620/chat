@@ -22,14 +22,13 @@
               <div class="flex space-x-4">
                 <router-link
                   v-for="menu in menuList"
-                  :key="menu"
-                  :to="menu"
+                  :key="menu.name"
+                  :to="menu.name"
                   :class="useActiveMenuClass(menu)"
                   @click.native="useActiveCurrentMenu(menu)"
                 >
-                  {{ menu }}
+                  {{ menu.name }}
                 </router-link>
-
               </div>
             </div>
           </div>
@@ -65,17 +64,30 @@
         </div>
       </div>
     </nav>
+    <!-- tools -->
+    <span @click="useEditArticle" class="transform hover:rotate-180 duration-500 transition-all transition rounded-full inline-flex items-center px-4 py-4 fixed bottom-4 right-4 h-14 w-14 m-8 items-center bg-indigo-600  text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <svg t="1616686164030" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2871" width="200" height="200"><path d="M853.333333 480H544V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v309.333333H170.666667c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h309.333333V853.333333c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V544H853.333333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z" p-id="2872" data-spm-anchor-id="a313x.7781069.0.i2" class="selected" fill="#ffffff"></path></svg>
+    </span>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { toRefs, getCurrentInstance } from 'vue'
+import { toRefs, getCurrentInstance, watch } from 'vue'
 import { useLayout, useLayoutStates } from './useLayout'
 export default {
   setup (props, ctx) {
     const state = useLayoutStates(props)
     state.currentVM = getCurrentInstance().proxy
+    
+    // 监听路由变化，给正确的路由显示选中样式
+    watch(
+      () => state.currentVM.$route,
+      (o) => {
+        state.menuList.forEach(v => v.isActive = v.name === o.name)
+        state.activeMenu = o.name
+      }
+    )
     state.activeMenu = state.currentVM.$route.name || 'Dashboard'
     return {
       ...toRefs(state),

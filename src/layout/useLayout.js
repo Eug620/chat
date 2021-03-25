@@ -15,8 +15,14 @@ export const useLayoutStates = (props) => {
     currentVM: null,
     activeMenu: 'Dashboard',
     menuList: [
-      'Dashboard',
-      'HotList'
+      {
+        name: 'Dashboard',
+        isActive: false
+      },
+      {
+        name:'HotList',
+        isActive: false 
+      }
       // 'MarkdownEdit'
     ],
     isShowUserInfo: false,
@@ -31,24 +37,34 @@ export const useLayoutStates = (props) => {
 // methods
 export const useLayout = (props, state, ctx) => {
   const useActiveMenuClass = (current) => {
-    if (current === state.activeMenu) {
+    if (current.name === state.activeMenu) {
       return "bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium"
     } else {
       return "text-black-300 hover:bg-black-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium"
     }
   }
   
+  // 更新选中tab
   const useActiveCurrentMenu = (current) => {
-    state.activeMenu = current
+    state.activeMenu = current.name
   }
 
+  // 显示用户功能
   const useShowUserInfo = () => {
     state.isShowUserInfo = !state.isShowUserInfo
+  }
+
+  // 前往文章编辑
+  const useEditArticle = () => {
+    state.currentVM.$router.push({
+      name: 'MarkdownEdit'
+    })
   }
   
   return {
     useActiveMenuClass,
     useActiveCurrentMenu,
-    useShowUserInfo
+    useShowUserInfo,
+    useEditArticle
   }
 }
