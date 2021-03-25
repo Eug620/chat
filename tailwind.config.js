@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 14:33:15
- * @LastEditTime : 2021-03-09 14:34:29
+ * @LastEditTime : 2021-03-25 18:10:29
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/tailwind.config.js
@@ -15,5 +15,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ]
 }

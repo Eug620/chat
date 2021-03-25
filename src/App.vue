@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-03-23 19:26:09
+ * @LastEditTime : 2021-03-25 15:20:28
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/App.vue
@@ -12,21 +12,17 @@
 
 <script>
 import { defineComponent, toRefs, onMounted } from 'vue'
-import { state } from './useApp'
-import server from './server'
+import { useAppStates, useApp } from './useApp'
 export default defineComponent({
   name: 'App',
   components: {
   },
-  setup () {
-    const useGetUserList = async () => {
-      try {
-        let res = await server.SearchUserList()
-        console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  setup (props, ctx) {
+    const state = useAppStates(props)
+    const {
+      useGetUserList
+    } = useApp(props, state, ctx)
+    
     onMounted(() => {
       useGetUserList()
     })

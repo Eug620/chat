@@ -7,6 +7,7 @@
     "build:p": "vite build && rm -rf /usr/local/nginx/html/* && mv dist/* /usr/local/nginx/html/"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "highlight.js": "^10.6.0",
     "marked": "^2.0.1",

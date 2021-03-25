@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-11 14:21:48
+ * @LastEditTime : 2021-03-25 17:00:24
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -71,21 +71,15 @@
 
 <script>
 import { toRefs, getCurrentInstance } from 'vue'
-import {
-  state,
-  useActiveMenuClass,
-  useActiveCurrentMenu,
-  useShowUserInfo
-} from './useLayout'
+import { useLayout, useLayoutStates } from './useLayout'
 export default {
-  setup () {
+  setup (props, ctx) {
+    const state = useLayoutStates(props)
     state.currentVM = getCurrentInstance().proxy
     state.activeMenu = state.currentVM.$route.name || 'Dashboard'
     return {
       ...toRefs(state),
-      useActiveMenuClass,
-      useActiveCurrentMenu,
-      useShowUserInfo
+      ...useLayout(props, state, ctx)
     }
   }
 }
