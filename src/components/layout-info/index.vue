@@ -96,11 +96,12 @@
             >
               <div class="max-w-md w-full space-y-8">
                 <div>
-                  <img
+                  <svg t="1616773907406" class="icon mx-auto h-12 w-auto" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19251" width="48" height="48"><path d="M846.726194 462.606307l-108.698095 175.515454v238.176709l88.237277 78.646269H614.30409l85.999376-79.285669v-244.251015l-198.214175-280.377146h125.642211l59.464252-56.26725-105.501093-160.489541-110.296597-32.929129 13.427412-101.344989-167.203247 134.274118-226.667499 422.324071 158.251639 343.358102-72.571964 77.047768v46.03684h119.887606l29.412425-15.665314 23.977522 15.665314h607.750234v-54.988448l-136.19232-136.19232v-173.916953l72.891664-118.608804h26.215423l13.427412 103.582891h38.364034l9.910708-180.310958h-135.552919z" p-id="19252" fill="#4338ca"></path></svg>
+                  <!-- <img
                     class="mx-auto h-12 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                     alt="Workflow"
-                  />
+                  /> -->
                   <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">{{isCreate ? 'Create' : 'Sign in'}}</h2>
                 </div>
                 <form class="mt-8 space-y-6">
@@ -176,7 +177,7 @@
                           />
                         </svg>
                       </span>
-                      {{isCreate ? 'Create' : 'Sign in'}}
+                      {{isCreate ? 'Save' : 'Sign in'}}
                     </div>
                   </div>
                 </form>

@@ -10,37 +10,43 @@
   <chat-container>
     <div class="flex">
       <div class="flex-grow">
-        <div v-for="(item, idx) in articleList" :key="idx" class="m-4 bg-white shadow overflow-hidden sm:rounded-lg">
-          <div class="px-4 py-5 sm:px-6">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <div
+          v-for="(item, idx) in articleList"
+          :key="idx"
+          class="m-4 bg-white shadow overflow-hidden sm:rounded-lg hover:shadow-lg transition duration-300 group"
+
+        >
+          <div class="px-4 py-5 sm:px-6 ">
+            <h3 class="text-lg leading-6 font-medium text-gray-900 group-hover:text-indigo-600">
               {{ item.article_title }}
             </h3>
-            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+
+            <p class="mt-1 max-w-2xl text-sm text-gray-500 group-hover:text-indigo-600">
               {{ item.article_describe }}
             </p>
           </div>
           <div class="border-t border-gray-200">
             <dl>
-              <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  Author
-                </dt>
+              <div
+                class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Author</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {{ item.author }}
                 </dd>
               </div>
-              <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  Creation Date
-                </dt>
+              <div
+                class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Creation Date</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {{ item.create_time }}
                 </dd>
               </div>
-              <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  Views
-                </dt>
+              <div
+                class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Views</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {{ item.page_views }}
                 </dd>
@@ -114,26 +120,22 @@
 </template>
 
 <script>
-import { useStates, useFunction } from './useState'
-import { getCurrentInstance, toRefs } from 'vue'
+import { useStates, useFunction } from "./useState";
+import { getCurrentInstance, toRefs } from "vue";
 export default {
-  name: 'Dashboard',
-  setup (props, ctx) {
-    const state = useStates(props)
-    state.currentVm = getCurrentInstance().proxy
-    const {
-      useHello,
-      useGetList
-    } = useFunction(props, state, ctx)
-    useGetList()
+  name: "Dashboard",
+  setup(props, ctx) {
+    const state = useStates(props);
+    state.currentVm = getCurrentInstance().proxy;
+    const { useHello, useGetList } = useFunction(props, state, ctx);
+    useGetList();
     return {
       ...toRefs(state),
-      useHello
-    }
-  }
-}
+      useHello,
+    };
+  },
+};
 </script>
 
 <style>
-
 </style>

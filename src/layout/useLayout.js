@@ -46,9 +46,10 @@ export const useLayoutStates = (props) => {
 export const useLayout = (props, state, ctx) => {
   const useActiveMenuClass = (current) => {
     if (current.name === state.activeMenu) {
-      return "bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium"
+      // return "bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium"
+      return "text-black-300 px-3 py-2 rounded-md text-sm font-medium font-black border-2 border-indigo-600 rounded-full"
     } else {
-      return "text-black-300 hover:bg-black-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+      return "text-black-300 px-3 py-2 rounded-md text-sm font-medium font-black border-2 border-Blue-0 rounded-full"
     }
   }
   
