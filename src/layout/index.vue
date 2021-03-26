@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-26 12:47:57
+ * @LastEditTime : 2021-03-26 14:39:01
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -46,18 +46,8 @@
               <div>
                 <button type="button" class="bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-expanded="false" aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
-                  <img @click="useShowUserInfo" class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <img @click="() => info.isShow = true" class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                 </button>
-              </div>
-              <div v-if="isShowUserInfo" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                <a
-                  v-for="setting in userInfoSetting"
-                  :key="setting"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-white"
-                  role="menuitem"
-                >
-                  {{ setting }}
-                </a>
               </div>
             </div>
           </div>
@@ -70,10 +60,15 @@
         :msg-color="msgOption.msgColor"
         @msg-close="() => msgOption.isShow = false"
       />
+      <layout-info
+        v-show="info.isShow"
+        :info="info"
+        @close="() => info.isShow = false"
+      />
     </nav>
     <!-- message -->
     <!-- tools -->
-    <span @click="useEditArticle" class="transform hover:rotate-180 duration-500 transition-all transition rounded-full inline-flex items-center px-4 py-4 fixed bottom-4 right-4 h-14 w-14 m-8 items-center bg-indigo-600  text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <span @click="useEditArticle" class="z-40 transform hover:rotate-180 duration-500 transition-all transition rounded-full inline-flex items-center px-4 py-4 fixed bottom-4 right-4 h-14 w-14 m-8 items-center bg-indigo-600  text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <svg t="1616686164030" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2871" width="200" height="200"><path d="M853.333333 480H544V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v309.333333H170.666667c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h309.333333V853.333333c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V544H853.333333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z" p-id="2872" data-spm-anchor-id="a313x.7781069.0.i2" class="selected" fill="#ffffff"></path></svg>
     </span>
     <router-view
@@ -98,10 +93,23 @@ export default {
         state.activeMenu = o.name
       }
     )
+    const {
+      useActiveMenuClass,
+      useActiveCurrentMenu,
+      useEditArticle,
+      useShowMessage,
+      useCloseMessage,
+      useIsLogin
+    } = useLayout(props, state, ctx)
     state.activeMenu = state.currentVM.$route.name || 'Dashboard'
+    useIsLogin()
     return {
       ...toRefs(state),
-      ...useLayout(props, state, ctx)
+      useActiveMenuClass,
+      useActiveCurrentMenu,
+      useEditArticle,
+      useShowMessage,
+      useCloseMessage
     }
   }
 }

@@ -1,13 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-26 11:38:38
- * @LastEditTime : 2021-03-26 12:29:03
+ * @LastEditTime : 2021-03-26 13:59:28
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-message/index.vue
 -->
 <template>
-  <div class="bg-indigo-600">
+  <div class="bg-indigo-600 z-30">
     <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between flex-wrap">
         <div class="w-0 flex-1 flex items-center">

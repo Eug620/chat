@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-26 12:03:48
+ * @LastEditTime : 2021-03-26 14:36:23
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -25,17 +25,18 @@ export const useLayoutStates = (props) => {
       }
       // 'MarkdownEdit'
     ],
-    isShowUserInfo: false,
-    userInfoSetting: [
-      'Your Profile',
-      'Settings',
-      'Sign out'
-    ],
     msgOption: {
       isShow: false,
       msgText: '这是一段提示信息',
       msgIcon: '',
       msgColor: ''
+    },
+    info: {
+      isShow: false,
+      isLogin: false,
+      name: '',
+      email: '',
+      time: ''
     }
   })
 }
@@ -55,10 +56,6 @@ export const useLayout = (props, state, ctx) => {
     state.activeMenu = current.name
   }
 
-  // 显示用户功能
-  const useShowUserInfo = () => {
-    state.isShowUserInfo = !state.isShowUserInfo
-  }
 
   const useCloseMessage = debounce(() => {
     setTimeout(() => {
@@ -81,13 +78,28 @@ export const useLayout = (props, state, ctx) => {
       name: 'MarkdownEdit'
     })
   }
+
+  // 检测用户是否登录
+  const useIsLogin = () => {
+    // const res = {
+    //   "user_name": "eug222222",
+    //   "user_password": "eug222222",
+    //   "user_email": "eug222222email",
+    //   "create_time": 1607574815000,
+    //   "update_time": 1607574815000,
+    //   "user_id": ""
+    // }
+    // localStorage.setItem('EUG_USER_INFO', JSON.stringify(res))
+    const { user_name, user_id } = JSON.parse(localStorage.getItem('EUG_USER_INFO'))
+    console.log(user_name, user_id);
+  }
   
   return {
     useActiveMenuClass,
     useActiveCurrentMenu,
-    useShowUserInfo,
     useEditArticle,
     useShowMessage,
-    useCloseMessage
+    useCloseMessage,
+    useIsLogin
   }
 }
