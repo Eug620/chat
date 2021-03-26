@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-26 14:36:23
+ * @LastEditTime : 2021-03-26 15:40:15
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -90,7 +90,7 @@ export const useLayout = (props, state, ctx) => {
     //   "user_id": ""
     // }
     // localStorage.setItem('EUG_USER_INFO', JSON.stringify(res))
-    const { user_name, user_id } = JSON.parse(localStorage.getItem('EUG_USER_INFO'))
+    const { user_name, user_id } = JSON.parse(localStorage.getItem('EUG_USER_INFO')) || {}
     console.log(user_name, user_id);
   }
   
