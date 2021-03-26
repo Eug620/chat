@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-24 11:00:25
- * @LastEditTime : 2021-03-26 11:18:53
+ * @LastEditTime : 2021-03-26 12:30:53
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/markdown-edit/useMarkdown.js
@@ -30,7 +30,7 @@ export const useMarkStates = (props) => {
     })
 }
 
-export const useMark = (props, state, ctx) => {
+export const useMark = (props, state, { emit }) => {
     const useMarkedEvent = (v) => {
         state.markedOption.mdValue = v
     }
@@ -47,6 +47,14 @@ export const useMark = (props, state, ctx) => {
             let res = await server.CreateArticle(_mergeProps())
             if (res.code === 200) {
                 console.log(res,'200');
+                emit('show-message', {
+                    msgText: 'Add Article Success!!!',
+                    msgIcon: 'msgIcon',
+                    msgColor: 'msgColor',
+                })
+                setTimeout(() => {
+                    state.currentVM.$router.push('Dashboard')
+                },500)
             } else {
                 console.log(res, 'error')
             }

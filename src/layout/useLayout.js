@@ -1,14 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-25 17:02:06
+ * @LastEditTime : 2021-03-26 12:03:48
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
  */
 
-import { reactive, watch } from "vue";
-
+import { reactive } from "vue";
+import { debounce } from 'lodash'
 // states
 export const useLayoutStates = (props) => {
   return reactive({
@@ -30,7 +30,13 @@ export const useLayoutStates = (props) => {
       'Your Profile',
       'Settings',
       'Sign out'
-    ]
+    ],
+    msgOption: {
+      isShow: false,
+      msgText: '这是一段提示信息',
+      msgIcon: '',
+      msgColor: ''
+    }
   })
 }
 
@@ -54,6 +60,21 @@ export const useLayout = (props, state, ctx) => {
     state.isShowUserInfo = !state.isShowUserInfo
   }
 
+  const useCloseMessage = debounce(() => {
+    setTimeout(() => {
+      state.msgOption.isShow = false
+    }, 5000)
+  }, 1000)
+
+  // 显示message
+  const useShowMessage = ({ msgText, msgIcon, msgColor }) => {
+    state.msgOption.msgText = msgText
+    state.msgOption.msgIcon = msgIcon
+    state.msgOption.msgColor = msgColor
+    state.msgOption.isShow = true
+    useCloseMessage()
+  }
+
   // 前往文章编辑
   const useEditArticle = () => {
     state.currentVM.$router.push({
@@ -65,6 +86,8 @@ export const useLayout = (props, state, ctx) => {
     useActiveMenuClass,
     useActiveCurrentMenu,
     useShowUserInfo,
-    useEditArticle
+    useEditArticle,
+    useShowMessage,
+    useCloseMessage
   }
 }
