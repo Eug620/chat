@@ -1,12 +1,31 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:25:28
- * @LastEditTime : 2021-03-23 20:18:44
+ * @LastEditTime : 2021-03-26 18:12:12
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/utils/axios/index.js
  */
 import Axios from 'axios'
+
+// 创建一个错误
+function errorCreate (msg) {
+  const error = new Error(msg)
+  errorLog(error)
+  throw error
+}
+
+// 记录和显示错误
+function errorLog (error) {
+  // 打印到控制台
+  if (process.env.NODE_ENV === 'development') {
+    console.log(error)
+  }
+  let errorMsg = error.message
+  if (error.message.includes('timeout')) {
+    errorMsg = '[ code: 408 ] ' + error.message
+  }
+}
 
 // 创建一个 axios 实例
 const service = Axios.create({
@@ -49,7 +68,8 @@ service.interceptors.response.use(
           return dataAxios.data
         case 403:
           // [ 示例 ] 其它和后台约定的 code
-          errorCreate(`[ code: 403 ] ${dataAxios.msg} : ${response.config.url}`)
+          return dataAxios
+          // errorCreate(`[ code: 403 ] ${dataAxios.msg} : ${response.config.url}`)
           break
         case 204:
           // [ 示例 ] 其它和后台约定的 code
@@ -72,7 +92,7 @@ service.interceptors.response.use(
       switch (error.response.status) {
         case 400: error.message = `[ code: 400 ] server error 请求错误 ${error.response.data.msg || ''}`; break
         case 401: error.message = '[ code: 401 ] server error 未授权，请登录'; break
-        case 403: error.message = '[ code: 403 ] server error 拒绝访问'; break
+        // case 403: error.message = '[ code: 403 ] server error 拒绝访问'; break
         case 404: error.message = `[ code: 404 ] server error 请求地址出错: ${error.response.config.url}`; break
         case 408: error.message = '[ code: 408 ] server error 请求超时'; break
         case 413: error.message = `[ code: 413 ] server error Nginx等其他配置文件错误，${error.response.config.url}`; break

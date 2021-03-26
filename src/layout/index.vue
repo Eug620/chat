@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-26 14:39:01
+ * @LastEditTime : 2021-03-26 17:52:04
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -64,6 +64,7 @@
         v-show="info.isShow"
         :info="info"
         @close="() => info.isShow = false"
+        @show-message="useShowMessage"
       />
     </nav>
     <!-- message -->

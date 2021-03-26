@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-03-25 15:20:28
+ * @LastEditTime : 2021-03-26 16:15:17
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/App.vue
@@ -12,20 +12,15 @@
 
 <script>
 import { defineComponent, toRefs, onMounted } from 'vue'
-import { useAppStates, useApp } from './useApp'
+// import { useAppStates, useApp } from './useApp'
+import { useAppStates } from './useApp'
 export default defineComponent({
   name: 'App',
   components: {
   },
   setup (props, ctx) {
     const state = useAppStates(props)
-    const {
-      useGetUserList
-    } = useApp(props, state, ctx)
-    
-    onMounted(() => {
-      useGetUserList()
-    })
+    // const { } = useApp(props, state, ctx)
     return {
       ...toRefs(state)
     }

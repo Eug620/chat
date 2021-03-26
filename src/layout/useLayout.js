@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-26 15:40:15
+ * @LastEditTime : 2021-03-26 16:36:08
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -34,9 +34,10 @@ export const useLayoutStates = (props) => {
     info: {
       isShow: false,
       isLogin: false,
-      name: '',
-      email: '',
-      time: ''
+      user_name: '暂无用户信息',
+      user_email: '暂无用户信息',
+      create_time: '暂无用户信息',
+      user_id: '暂无用户信息'
     }
   })
 }
@@ -79,19 +80,26 @@ export const useLayout = (props, state, ctx) => {
     })
   }
 
+  const _resetUserInfo = () => {
+    state.info.isLogin = false
+    state.info.user_name = '暂无用户信息'
+    state.info.user_email = '暂无用户信息'
+    state.info.create_time = '暂无用户信息'
+    state.info.user_id = '暂无用户信息'
+  }
+
   // 检测用户是否登录
   const useIsLogin = () => {
-    // const res = {
-    //   "user_name": "eug222222",
-    //   "user_password": "eug222222",
-    //   "user_email": "eug222222email",
-    //   "create_time": 1607574815000,
-    //   "update_time": 1607574815000,
-    //   "user_id": ""
-    // }
-    // localStorage.setItem('EUG_USER_INFO', JSON.stringify(res))
-    const { user_name, user_id } = JSON.parse(localStorage.getItem('EUG_USER_INFO')) || {}
-    console.log(user_name, user_id);
+    const { user_name, user_id, user_email, create_time } = JSON.parse(localStorage.getItem('EUG_USER_INFO')) || {}
+    if (user_id && user_name) {
+      state.info.isLogin = true
+      state.info.user_name = user_name
+      state.info.user_email = user_email
+      state.info.create_time = create_time
+      state.info.user_id = user_id
+    } else {
+      _resetUserInfo()
+    }
   }
   
   return {
