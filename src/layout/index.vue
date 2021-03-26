@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-26 12:03:35
+ * @LastEditTime : 2021-03-26 12:47:57
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -69,7 +69,7 @@
         :msg-icon="msgOption.msgIcon"
         :msg-color="msgOption.msgColor"
         @msg-close="() => msgOption.isShow = false"
-      >
+      />
     </nav>
     <!-- message -->
     <!-- tools -->
