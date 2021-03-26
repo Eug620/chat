@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-24 11:00:25
- * @LastEditTime : 2021-03-25 17:01:35
+ * @LastEditTime : 2021-03-26 11:18:53
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/markdown-edit/useMarkdown.js
@@ -43,18 +43,15 @@ export const useMark = (props, state, ctx) => {
         }
     }
     const useSaveArticle = async () => {
-        console.log(123);
         try {
-            let res = server.CreateArticle(_mergeProps())
+            let res = await server.CreateArticle(_mergeProps())
             if (res.code === 200) {
-                alert(res.result.msg)
                 console.log(res,'200');
             } else {
-                alert(res.result.msg)
                 console.log(res, 'error')
             }
         } catch (error) {
-            console.log(error)
+            console.log('error')
         }
     }
 
