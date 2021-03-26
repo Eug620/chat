@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-26 13:55:14
- * @LastEditTime : 2021-03-26 17:24:33
+ * @LastEditTime : 2021-03-26 18:41:51
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/index.vue
@@ -129,6 +129,7 @@
                     <div>
                       <label class="sr-only">Password</label>
                       <input
+                        type="password"
                         v-model="account.user_password"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Password"

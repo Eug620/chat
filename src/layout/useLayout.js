@@ -1,14 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-26 16:36:08
+ * @LastEditTime : 2021-03-26 18:36:35
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
  */
 
 import { reactive } from "vue";
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 // states
 export const useLayoutStates = (props) => {
   return reactive({

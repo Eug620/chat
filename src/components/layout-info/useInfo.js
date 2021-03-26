@@ -1,14 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-26 16:30:05
- * @LastEditTime : 2021-03-26 18:14:25
+ * @LastEditTime : 2021-03-26 18:38:49
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/useInfo.js
  */
 import { reactive, nextTick } from "vue"
 import server from '/@/server'
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash-es'
 
 export const useAccountStates = (props) => {
   return reactive({
@@ -93,6 +93,7 @@ export const useAccount = (props, state, { emit }) => {
         localStorage.setItem('EUG_USER_INFO', JSON.stringify(data))
         nextTick(() => {
           useCloseInfo()
+          emit('refresh-status')
           emit('show-message', {
             msgText: res.result.msg,
             msgIcon: '',

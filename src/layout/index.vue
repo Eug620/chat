@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-03-26 17:52:04
+ * @LastEditTime : 2021-03-26 18:40:46
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -65,6 +65,7 @@
         :info="info"
         @close="() => info.isShow = false"
         @show-message="useShowMessage"
+        @refresh-status="useIsLogin"
       />
     </nav>
     <!-- message -->
@@ -110,7 +111,8 @@ export default {
       useActiveCurrentMenu,
       useEditArticle,
       useShowMessage,
-      useCloseMessage
+      useCloseMessage,
+      useIsLogin
     }
   }
 }
