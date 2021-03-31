@@ -14,99 +14,37 @@
           v-for="(item, idx) in articleList"
           :key="idx"
           class="m-4 bg-white shadow overflow-hidden sm:rounded-lg hover:shadow-lg transition duration-300 group"
-
         >
-          <div class="px-4 py-5 sm:px-6 ">
-            <h3 class="text-lg leading-6 font-medium text-gray-900 group-hover:text-indigo-600">
-              {{ item.article_title }}
-            </h3>
-
-            <p class="mt-1 max-w-2xl text-sm text-gray-500 group-hover:text-indigo-600">
-              {{ item.article_describe }}
-            </p>
-          </div>
-          <div class="border-t border-gray-200">
-            <dl>
+          <div class="md:flex">
+            <div class="md:flex-shrink-0">
+              <img
+                class="h-48 w-full object-cover md:w-48"
+                src="https://images.unsplash.com/photo-1515711660811-48832a4c6f69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
+                alt="Man looking at item at a store"
+              />
+            </div>
+            <div class="p-8 w-full relative box-border">
               <div
-                class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"
               >
-                <dt class="text-sm font-medium text-gray-500">Author</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ item.author }}
-                </dd>
+                {{ item.author }}
               </div>
-              <div
-                class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              <a
+                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                >{{ item.article_describe }}</a
               >
-                <dt class="text-sm font-medium text-gray-500">Creation Date</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ item.create_time }}
-                </dd>
+              <p class="mt-2 text-gray-500">
+                概述 : {{ item.article_describe }}
+              </p>
+              <div class="mt-2 text-gray-500 absolute w-full bottom-10">
+                <span class="absolute left-0">
+                  浏览量 : {{ item.page_views }}
+                </span>
+                <span class="absolute right-16">
+                  发布日期 : {{ item.create_time }}
+                </span>
               </div>
-              <div
-                class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-              >
-                <dt class="text-sm font-medium text-gray-500">Views</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ item.page_views }}
-                </dd>
-              </div>
-              <!-- <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  Salary expectation
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  $120,000
-                </dd>
-              </div>
-              <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  About
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-                </dd>
-              </div>
-              <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                  Attachments
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          resume_back_end_developer.pdf
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-                          Download
-                        </a>
-                      </div>
-                    </li>
-                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                      <div class="w-0 flex-1 flex items-center">
-                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          coverletter_back_end_developer.pdf
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-                          Download
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </dd>
-              </div> -->
-            </dl>
+            </div>
           </div>
         </div>
       </div>
