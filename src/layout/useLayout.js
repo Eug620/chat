@@ -102,6 +102,17 @@ export const useLayout = (props, state, ctx) => {
       _resetUserInfo()
     }
   }
+
+  // 显示用户登录
+  const useShowInfo = () => {
+    if (!state.info.isLogin) {
+      state.info.user_name = '',
+      state.info.user_email = '',
+      state.info.create_time = '',
+      state.info.user_id = ''
+    }
+    state.info.isShow = true
+  }
   
   return {
     useActiveMenuClass,
@@ -109,6 +120,7 @@ export const useLayout = (props, state, ctx) => {
     useEditArticle,
     useShowMessage,
     useCloseMessage,
-    useIsLogin
+    useIsLogin,
+    useShowInfo
   }
 }

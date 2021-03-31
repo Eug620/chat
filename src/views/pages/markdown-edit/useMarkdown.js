@@ -8,6 +8,7 @@
  */
 import { reactive } from "vue";
 import server from '/@/server'
+import lib from '/@/lib'
 
 export const useMarkStates = (props) => {
     return reactive({
@@ -23,9 +24,8 @@ export const useMarkStates = (props) => {
             mdValue: "## Chat-Editor"
         },
         articleForm: {
-            title: 'title',
-            author: 'author',
-            describe: 'describe'
+            title: '',
+            describe: ''
         }
     })
 }
@@ -35,31 +35,54 @@ export const useMark = (props, state, { emit }) => {
         state.markedOption.mdValue = v
     }
     const _mergeProps = () => {
+        const { user_name, user_id } = lib.GetUserInfo()
         return {
             "article_title": state.articleForm.title,
-            "author": state.articleForm.author,
+            "author": user_name || "",
             "article_describe": state.articleForm.describe,
-            "article_content": state.markedOption.mdValue
+            "article_content": state.markedOption.mdValue,
+            "user_id": user_id || ""
         }
     }
     const useSaveArticle = async () => {
         try {
-            let res = await server.CreateArticle(_mergeProps())
-            if (res.code === 200) {
-                console.log(res,'200');
+            const _info = lib.GetUserInfo()
+            if (_info) {
+                let res = await server.CreateArticle(_mergeProps())
+                if (res.code === 200) {
+                    console.log(res,'200');
+                    emit('show-message', {
+                        msgText: '新增文章成功！',
+                        msgIcon: 'msgIcon',
+                        msgColor: 'msgColor',
+                    })
+                    setTimeout(() => {
+                        state.currentVM.$router.push('Dashboard')
+                    },500)
+                } else {
+                    console.log(res, 'error')
+                    emit('show-message', {
+                        msgText: '新增文章失败！',
+                        msgIcon: 'msgIcon',
+                        msgColor: 'msgColor',
+                    })
+                }
+            } else {
                 emit('show-message', {
-                    msgText: 'Add Article Success!!!',
+                    msgText: '请登录！！！',
                     msgIcon: 'msgIcon',
                     msgColor: 'msgColor',
                 })
                 setTimeout(() => {
-                    state.currentVM.$router.push('Dashboard')
-                },500)
-            } else {
-                console.log(res, 'error')
+                    emit('show-info', true)
+                }, 500)
             }
         } catch (error) {
-            console.log('error')
+            emit('show-message', {
+                msgText: '服务器错误！',
+                msgIcon: 'msgIcon',
+                msgColor: 'msgColor',
+            })
         }
     }
 

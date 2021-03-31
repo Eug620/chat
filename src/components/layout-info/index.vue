@@ -203,10 +203,12 @@ export default {
     const state = useAccountStates(props)
     state.currentVM = getCurrentInstance().proxy
     const {
+      useWatchProps,
       useCloseInfo,
       useCreateAccount,
       useSave
     } = useAccount(props, state, ctx)
+    useWatchProps()
     return {
       ...toRefs(state),
       useCloseInfo,

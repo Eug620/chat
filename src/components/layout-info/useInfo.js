@@ -6,7 +6,7 @@
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/useInfo.js
  */
-import { reactive, nextTick } from "vue"
+import { reactive, nextTick, watch } from "vue"
 import server from '/@/server'
 import { cloneDeep } from 'lodash-es'
 
@@ -18,13 +18,29 @@ export const useAccountStates = (props) => {
       user_email: props.info.email,
       create_time: props.info.time,
       user_password: ''
-
     },
     isCreate: false
   })
 }
 
 export const useAccount = (props, state, { emit }) => {
+  // 监听props
+  const useWatchProps = () => {
+    watch(
+      () => props,
+      (o) => {
+        state.account.user_name = o.info.name
+        state.account.user_email = o.info.email
+        state.account.create_time = o.info.time
+        state.account.user_password = ''
+        state.isCreate = false
+      },
+      {
+        deep: true
+      }
+    )
+  }
+
   const useCloseInfo = () => {
     emit("close")
   }
@@ -131,6 +147,7 @@ export const useAccount = (props, state, { emit }) => {
     }
   }
   return {
+    useWatchProps,
     useCloseInfo,
     useCreateAccount,
     useSave
