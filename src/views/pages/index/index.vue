@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-04-02 14:30:28
+ * @LastEditTime : 2021-04-02 14:51:11
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -25,15 +25,15 @@
               />
             </div>
             <div class="p-8 w-full relative box-border">
+              <a
+                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                >{{ item.article_title }}</a
+              >
               <div
-                class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"
+                class="mt-2 tracking-wide text-sm text-indigo-500 font-semibold"
               >
                 {{ item.author }}
               </div>
-              <a
-                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                >{{ item.article_describe }}</a
-              >
               <p class="mt-2 text-gray-500">
                 概述 : {{ item.article_describe }}
               </p>
