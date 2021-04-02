@@ -1,14 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-04-02 10:49:13
- * @LastEditTime : 2021-04-02 11:25:26
+ * @LastEditTime : 2021-04-02 14:32:43
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/useState.js
  */
 import { reactive } from 'vue'
 import server from '/@/server'
-import { cloneDeep } from  'lodash-es'
+import { cloneDeep, reverse } from  'lodash-es'
 export const useStates = () => {
     return reactive({
         currentVm: null,
@@ -22,7 +22,7 @@ export const useFunction = (props, state, { emit }) => {
         try {
             let res = await server.GetArticleList()
             if (res.code === 200) {
-                state.articleList = cloneDeep(res.result)
+                state.articleList = reverse(cloneDeep(res.result))
             } else {
                 emit('show-message', {
                     msgText: res.result.msg,

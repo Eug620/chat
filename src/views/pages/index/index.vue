@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-04-02 11:24:23
+ * @LastEditTime : 2021-04-02 14:30:28
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -42,7 +42,7 @@
                   浏览量 : {{ item.page_views }}
                 </span>
                 <span class="absolute right-16">
-                  发布日期 : {{ item.create_time }}
+                  发布日期 : {{ lib.FormatTimer(item.create_time) }}
                 </span>
               </div>
             </div>
@@ -61,6 +61,8 @@
 <script>
 import { useStates, useFunction } from "./useState";
 import { getCurrentInstance, toRefs } from "vue";
+import lib from '/@/lib'
+
 export default {
   name: "Dashboard",
   setup(props, ctx) {
@@ -70,7 +72,8 @@ export default {
     useGetList();
     return {
       ...toRefs(state),
-      useToDetail
+      useToDetail,
+      lib
     };
   },
 };
