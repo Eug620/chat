@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-03-11 15:51:54
+ * @LastEditTime : 2021-04-02 11:24:23
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -12,6 +12,7 @@
       <div class="flex-grow">
         <div
           v-for="(item, idx) in articleList"
+          @click="useToDetail(item.article_id)"
           :key="idx"
           class="m-4 bg-white shadow overflow-hidden sm:rounded-lg hover:shadow-lg transition duration-300 group"
         >
@@ -65,11 +66,11 @@ export default {
   setup(props, ctx) {
     const state = useStates(props);
     state.currentVm = getCurrentInstance().proxy;
-    const { useHello, useGetList } = useFunction(props, state, ctx);
+    const { useGetList, useToDetail } = useFunction(props, state, ctx);
     useGetList();
     return {
       ...toRefs(state),
-      useHello,
+      useToDetail
     };
   },
 };

@@ -1,3 +1,11 @@
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-04-02 10:49:13
+ * @LastEditTime : 2021-04-02 11:25:26
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /chat/src/views/pages/index/useState.js
+ */
 import { reactive } from 'vue'
 import server from '/@/server'
 import { cloneDeep } from  'lodash-es'
@@ -31,11 +39,17 @@ export const useFunction = (props, state, { emit }) => {
         }
     }
 
-    const useHello = () => {
-        console.log('hello');
+    const useToDetail = (articleList) => {
+        state.currentVm.$router.push({
+            name: 'ArticleDetail',
+            query: {
+                article_id: articleList
+            }
+        })
     }
+
     return {
-        useHello,
-        useGetList
+        useGetList,
+        useToDetail
     }
 }

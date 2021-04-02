@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:23:25
- * @LastEditTime : 2021-03-11 17:57:59
+ * @LastEditTime : 2021-04-02 11:26:35
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/router/index.js
@@ -30,6 +30,11 @@ const routes = [
         path: 'MarkdownEdit',
         name: 'MarkdownEdit',
         component: () => import('/@/views/pages/markdown-edit/index.vue')
+      },
+      {
+        path: 'ArticleDetail',
+        name: 'ArticleDetail',
+        component: () => import('/@/views/pages/article/index.vue')
       }
     ]
   },
