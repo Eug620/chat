@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-03-26 18:36:35
+ * @LastEditTime : 2021-04-20 15:24:01
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -9,9 +9,11 @@
 
 import { reactive } from "vue";
 import { debounce } from 'lodash-es'
+import lib from '/@/lib'
 // states
 export const useLayoutStates = (props) => {
   return reactive({
+    keepAliveArray: [],
     currentVM: null,
     activeMenu: 'Dashboard',
     menuList: [
@@ -91,7 +93,7 @@ export const useLayout = (props, state, ctx) => {
 
   // 检测用户是否登录
   const useIsLogin = () => {
-    const { user_name, user_id, user_email, create_time } = JSON.parse(localStorage.getItem('EUG_USER_INFO')) || {}
+    const { user_name, user_id, user_email, create_time } = lib.GetUserInfo()
     if (user_id && user_name) {
       state.info.isLogin = true
       state.info.user_name = user_name
@@ -113,6 +115,12 @@ export const useLayout = (props, state, ctx) => {
     }
     state.info.isShow = true
   }
+
+  // 登出
+  const useLoginOut = () => {
+    lib.RemoveUserInfo()
+    useIsLogin()
+  }
   
   return {
     useActiveMenuClass,
@@ -121,6 +129,7 @@ export const useLayout = (props, state, ctx) => {
     useShowMessage,
     useCloseMessage,
     useIsLogin,
-    useShowInfo
+    useShowInfo,
+    useLoginOut
   }
 }

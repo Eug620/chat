@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-26 16:30:05
- * @LastEditTime : 2021-03-26 18:38:49
+ * @LastEditTime : 2021-04-20 15:19:59
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/useInfo.js
@@ -146,10 +146,17 @@ export const useAccount = (props, state, { emit }) => {
       useUserLogin()
     }
   }
+
+  // 登出
+  const useLoginOut = () => {
+    emit('login-out')
+  }
+
   return {
     useWatchProps,
     useCloseInfo,
     useCreateAccount,
+    useLoginOut,
     useSave
   }
 }

@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:23:25
- * @LastEditTime : 2021-04-02 11:26:35
+ * @LastEditTime : 2021-04-20 15:48:51
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/router/index.js
@@ -19,21 +19,25 @@ const routes = [
       {
         path: 'Dashboard',
         name: 'Dashboard',
+        meta: { keepAlive: true },
         component: () => import('/@/views/pages/index/index.vue')
       },
       {
         path: 'HotList',
         name: 'HotList',
+        meta: { keepAlive: true },
         component: () => import('/@/views/pages/hot-list/index.vue')
       },
       {
         path: 'MarkdownEdit',
         name: 'MarkdownEdit',
+        meta: { keepAlive: false },
         component: () => import('/@/views/pages/markdown-edit/index.vue')
       },
       {
         path: 'ArticleDetail',
         name: 'ArticleDetail',
+        meta: { keepAlive: false },
         component: () => import('/@/views/pages/article/index.vue')
       }
     ]

@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-11 17:57:04
- * @LastEditTime : 2021-03-26 11:46:02
+ * @LastEditTime : 2021-04-20 15:37:39
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/markdown-edit/index.vue
@@ -58,7 +58,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 mb-6">
+                <div class="px-4 py-3 bg-white text-right sm:px-6">
                   <div
                     @click="useSaveArticle"
                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -73,9 +73,9 @@
 </template>
 
 <script>
-import { toRefs, getCurrentInstance } from "vue";
+import { toRefs, getCurrentInstance, defineComponent } from "vue";
 import { useMark, useMarkStates } from "./useMarkdown";
-export default {
+export default defineComponent({
   setup(props, ctx) {
     const state = useMarkStates(props);
     state.currentVM = getCurrentInstance().proxy;
@@ -86,7 +86,7 @@ export default {
       useSaveArticle
     };
   }
-};
+})
 </script>
 
 <style>

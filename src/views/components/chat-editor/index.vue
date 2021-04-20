@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-12 16:28:04
- * @LastEditTime : 2021-03-25 16:15:09
+ * @LastEditTime : 2021-04-20 15:40:44
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/components/chat-editor/index.vue
@@ -73,7 +73,7 @@
 <script>
 import hljs from "highlight.js";
 import marked from "marked";
-import { toRefs, watch } from "vue";
+import { toRefs, watch, defineComponent } from "vue";
 import { useChatEditor, useChatEditorStates } from './useChatEditor'
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -89,7 +89,7 @@ marked.setOptions({
   }
 });
 
-export default {
+export default defineComponent({
   name: "chat-editor",
   props: [
     "mdValue",
@@ -164,7 +164,7 @@ export default {
       useCompiledMarkdown
     }
   }
-}
+})
 </script>
 <style lang="scss" scoped>
 .show{

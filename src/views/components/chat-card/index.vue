@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 19:55:56
- * @LastEditTime : 2021-03-11 14:31:03
+ * @LastEditTime : 2021-04-20 15:40:00
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/components/chat-card/index.vue
@@ -13,9 +13,10 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+export default defineComponent({
   name: 'chat-card'
-}
+})
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-04-02 14:24:21
+ * @LastEditTime : 2021-04-20 17:53:05
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -54,23 +54,28 @@
         @close="() => info.isShow = false"
         @show-message="useShowMessage"
         @refresh-status="useIsLogin"
+        @login-out="useLoginOut"
       />
     </nav>
     <!-- tools -->
     <span @click="useEditArticle" class="animate-bounce z-40 transform hover:rotate-180 duration-500 transition-all transition rounded-full inline-flex items-center px-4 py-4 fixed bottom-4 right-4 h-14 w-14 m-8 items-center bg-indigo-600  text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <svg t="1616686164030" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2871" width="200" height="200"><path d="M853.333333 480H544V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v309.333333H170.666667c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h309.333333V853.333333c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V544H853.333333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z" p-id="2872" data-spm-anchor-id="a313x.7781069.0.i2" class="selected" fill="#ffffff"></path></svg>
     </span>
-    <router-view
-      @show-message="useShowMessage"
-      @show-info="(isShow) => info.isShow = isShow"
-    />
+    <!-- 路由缓存 -->
+    <router-view v-slot="{ Component, route }">
+      <transition name="slide-fade" mode="out-in">
+        <keep-alive :include="useKeepAlive(route)">
+          <component :is="Component"/>
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
 <script>
-import { toRefs, getCurrentInstance, watch } from 'vue'
+import { toRefs, getCurrentInstance, watch, defineComponent } from 'vue'
 import { useLayout, useLayoutStates } from './useLayout'
-export default {
+export default defineComponent({
   setup (props, ctx) {
     const state = useLayoutStates(props)
     state.currentVM = getCurrentInstance().proxy
@@ -83,6 +88,14 @@ export default {
         state.activeMenu = o.name
       }
     )
+    // 记录缓存路由
+    const useKeepAlive = (route) => {
+      if (state.keepAliveArray.includes(route.name)) return state.keepAliveArray
+      if (route.meta.keepAlive) {
+        state.keepAliveArray.push(route.name)
+      }
+      return state.keepAliveArray
+    }
     const {
       useActiveMenuClass,
       useActiveCurrentMenu,
@@ -90,7 +103,8 @@ export default {
       useShowMessage,
       useCloseMessage,
       useIsLogin,
-      useShowInfo
+      useShowInfo,
+      useLoginOut
     } = useLayout(props, state, ctx)
     state.activeMenu = state.currentVM.$route.name || 'Dashboard'
     useIsLogin()
@@ -102,14 +116,30 @@ export default {
       useShowMessage,
       useCloseMessage,
       useIsLogin,
-      useShowInfo
+      useShowInfo,
+      useLoginOut,
+      useKeepAlive
     }
   }
-}
+})
 </script>
 
 <style>
 a{
   color: #4338ca;
 }
+.slide-fade-enter-active {
+  transition: all .3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
 </style>

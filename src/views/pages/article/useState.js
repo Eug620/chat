@@ -1,12 +1,12 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-04-02 11:26:17
- * @LastEditTime : 2021-04-02 14:38:43
+ * @LastEditTime : 2021-04-20 16:43:02
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/article/useState.js
  */
-import { reactive } from "vue"
+import { reactive, watch } from "vue"
 import server from '/@/server'
 
 export const useStates = (props) => {

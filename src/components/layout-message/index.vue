@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-26 11:38:38
- * @LastEditTime : 2021-03-26 13:59:28
+ * @LastEditTime : 2021-04-20 15:39:24
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-message/index.vue
@@ -65,9 +65,9 @@
 </template>
 
 <script>
-import { watch, getCurrentInstance } from 'vue'
+import { watch, getCurrentInstance, defineComponent } from 'vue'
 import { useStates, useMessage } from './useLayoutMessage'
-export default {
+export default defineComponent({
   name: 'layout-message',
   props: {
     msgText: String,
@@ -86,7 +86,7 @@ export default {
       props
     }
   }
-};
+})
 </script>
 
 <style>

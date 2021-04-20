@@ -1,13 +1,12 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-26 13:55:14
- * @LastEditTime : 2021-03-26 18:41:51
+ * @LastEditTime : 2021-04-20 15:39:07
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/index.vue
 -->
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <section
     class="fixed inset-0 overflow-hidden z-50"
     aria-labelledby="slide-over-title"
@@ -15,47 +14,15 @@
     aria-modal="true"
   >
     <div class="absolute inset-0 overflow-hidden">
-      <!--
-        Background overlay, show/hide based on slide-over state.
-
-        Entering: "ease-in-out duration-500"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in-out duration-500"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
       <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
       <div class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
-        <!--
-          Slide-over panel, show/hide based on slide-over state.
-
-          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-0"
-            To: "translate-x-full"
-        -->
         <div class="relative w-screen max-w-md">
-          <!--
-            Close button, show/hide based on slide-over state.
-
-            Entering: "ease-in-out duration-500"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in-out duration-500"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
           <div class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
             <button
               @click="useCloseInfo"
               class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
             >
               <span class="sr-only">Close panel</span>
-              <!-- Heroicon name: outline/x -->
               <svg
                 class="h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,19 +41,49 @@
             </button>
           </div>
 
-          <div
-            v-if="props.info.isLogin"
+          <!-- <div
+            
             class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll"
           >
             <div class="px-4 sm:px-6">
               <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Welcome!</h2>
             </div>
+            {{props}}
             <div class="mt-6 relative flex-1 px-4 sm:px-6">
-              <!-- Replace with your content -->
               <div class="absolute inset-0 px-4 sm:px-6">
-                <!-- <div class="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div> -->
               </div>
-              <!-- /End replace -->
+            </div>
+          </div> -->
+
+          <div v-if="props.info.isLogin" class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
+            <div
+              class="h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+            >
+              <div class="max-w-md w-full space-y-8">
+                <div>
+                  <svg t="1616773907406" class="icon mx-auto h-12 w-auto" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19251" width="48" height="48"><path d="M846.726194 462.606307l-108.698095 175.515454v238.176709l88.237277 78.646269H614.30409l85.999376-79.285669v-244.251015l-198.214175-280.377146h125.642211l59.464252-56.26725-105.501093-160.489541-110.296597-32.929129 13.427412-101.344989-167.203247 134.274118-226.667499 422.324071 158.251639 343.358102-72.571964 77.047768v46.03684h119.887606l29.412425-15.665314 23.977522 15.665314h607.750234v-54.988448l-136.19232-136.19232v-173.916953l72.891664-118.608804h26.215423l13.427412 103.582891h38.364034l9.910708-180.310958h-135.552919z" p-id="19252" fill="#4338ca"></path></svg>
+                  <!-- <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome</h2> -->
+                  <div class="mt-6 min-w-full text-center text-2xl text-purple-600 motion-safe:animate-spin">
+                    {{props.info.user_name}}
+                  </div>
+                  <div class="mt-3 min-w-full text-center text-1xl">
+                    {{props.info.user_email}}
+                  </div>
+                  <div class="mt-3 min-w-full text-center text-1xl">
+                    {{lib.FormatTimer(props.info.create_time)}}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    @click="useLoginOut"
+                    class="uppercase group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    </span>
+                    login out
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -97,11 +94,6 @@
               <div class="max-w-md w-full space-y-8">
                 <div>
                   <svg t="1616773907406" class="icon mx-auto h-12 w-auto" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19251" width="48" height="48"><path d="M846.726194 462.606307l-108.698095 175.515454v238.176709l88.237277 78.646269H614.30409l85.999376-79.285669v-244.251015l-198.214175-280.377146h125.642211l59.464252-56.26725-105.501093-160.489541-110.296597-32.929129 13.427412-101.344989-167.203247 134.274118-226.667499 422.324071 158.251639 343.358102-72.571964 77.047768v46.03684h119.887606l29.412425-15.665314 23.977522 15.665314h607.750234v-54.988448l-136.19232-136.19232v-173.916953l72.891664-118.608804h26.215423l13.427412 103.582891h38.364034l9.910708-180.310958h-135.552919z" p-id="19252" fill="#4338ca"></path></svg>
-                  <!-- <img
-                    class="mx-auto h-12 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    alt="Workflow"
-                  /> -->
                   <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">{{isCreate ? 'Create' : 'Sign in'}}</h2>
                 </div>
                 <form class="mt-8 space-y-6">
@@ -159,7 +151,7 @@
                   <div>
                     <div
                       @click="useSave"
-                      class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      class="uppercase group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                         <!-- Heroicon name: solid/lock-closed -->
@@ -192,9 +184,10 @@
 
 <script>
 import { useAccountStates, useAccount } from './useInfo'
-import { getCurrentInstance, toRefs } from 'vue'
+import { getCurrentInstance, toRefs, defineComponent } from 'vue'
+import lib from '/@/lib'
 
-export default {
+export default defineComponent({
   name: "layout-info",
   props: {
     info: Object
@@ -206,6 +199,7 @@ export default {
       useWatchProps,
       useCloseInfo,
       useCreateAccount,
+      useLoginOut,
       useSave
     } = useAccount(props, state, ctx)
     useWatchProps()
@@ -213,11 +207,13 @@ export default {
       ...toRefs(state),
       useCloseInfo,
       useCreateAccount,
+      useLoginOut,
       useSave,
-      props
+      props,
+      lib
     };
   }
-};
+})
 </script>
 
 <style>

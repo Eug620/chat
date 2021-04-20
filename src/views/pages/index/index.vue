@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-04-02 14:51:11
+ * @LastEditTime : 2021-04-20 16:54:14
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -49,34 +49,29 @@
           </div>
         </div>
       </div>
-      <!-- <div class="flex-grow-0 h-12 text-center flex m-4 w-3/12 px-4 bg-white shadow-md sm:rounded-2xl">
-        <div class="flex-grow py-4 border-r-2 border-Gray-900">1</div>
-        <div class="flex-grow py-4 border-r-2 border-Gray-900">2</div>
-        <div class="flex-grow py-4">3</div>
-      </div> -->
     </div>
   </chat-container>
 </template>
 
 <script>
 import { useStates, useFunction } from "./useState";
-import { getCurrentInstance, toRefs } from "vue";
+import { getCurrentInstance, toRefs, defineComponent } from "vue";
 import lib from '/@/lib'
 
-export default {
+export default defineComponent({
   name: "Dashboard",
   setup(props, ctx) {
-    const state = useStates(props);
-    state.currentVm = getCurrentInstance().proxy;
-    const { useGetList, useToDetail } = useFunction(props, state, ctx);
-    useGetList();
+    const state = useStates(props)
+    state.currentVm = getCurrentInstance().proxy
+    const { useGetList, useToDetail } = useFunction(props, state, ctx)
+    useGetList()
     return {
       ...toRefs(state),
       useToDetail,
       lib
     };
   },
-};
+})
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-04-02 11:15:41
- * @LastEditTime : 2021-04-02 14:22:36
+ * @LastEditTime : 2021-04-20 16:42:39
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/article/index.vue
@@ -12,7 +12,7 @@
       <div class="grid grid-cols-1 ">
         <div
           :style="{backgroundImage: `url(${background})`, zIndex:0}"
-          class="relative z-0 px-4 pt-40 pb-3 bg-fixed from-black bg-cover"
+          class="relative z-0 px-4 pt-80 pb-3 bg-fixed from-black bg-cover"
         >
           <h2
             class="text-xl font-semibold text-white"
@@ -46,7 +46,7 @@
 <script>
 import marked from "marked";
 import hljs from "highlight.js";
-import { toRefs, getCurrentInstance } from "vue";
+import { toRefs, getCurrentInstance, defineComponent } from "vue";
 import { useStates, useArticle } from "./useState";
 import lib from '/@/lib'
 marked.setOptions({
@@ -62,13 +62,13 @@ marked.setOptions({
     return hljs.highlightAuto(code).value;
   }
 });
-export default {
+export default defineComponent({
   name: "ArticleDetail",
   setup(props, ctx) {
     const state = useStates(props);
     state.currentVM = getCurrentInstance().proxy;
     const { useGetArticleDetail, useGetBackground } = useArticle(props, state, ctx);
-    useGetArticleDetail();
+    useGetArticleDetail()
     useGetBackground()
     return {
       ...toRefs(state),
@@ -76,7 +76,7 @@ export default {
       marked
     };
   }
-};
+})
 </script>
 
 <style lang="scss" scoped>
