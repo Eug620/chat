@@ -1,10 +1,18 @@
 # 指定Node版本
 FROM node:12.18.3
 
-RUN apt-get update    && apt-get install -y nginx
+RUN npm i -g yarn
+
+RUN npm i -g n
+
+RUN n stable
+
 WORKDIR /data
+
 COPY . /data/
+
 EXPOSE 80
-RUN  npm install \
-    && npm run build \
+
+RUN  yarn \
+    && yarn build \
     && ls
