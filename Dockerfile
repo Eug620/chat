@@ -2,9 +2,8 @@ FROM node as builder
 
 # 打印node版本和npm版本
 RUN npm --version
-RUN node -v
 
-RUN npm install -g npm@7.10.0
+RUN node -v
 
 # 全局安装yarn
 RUN npm i -g yarn
