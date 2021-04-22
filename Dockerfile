@@ -41,7 +41,8 @@ WORKDIR /data
 COPY . /data
 
 # build测试服项目
-RUN npm run build
+RUN yarn
+RUN yarn build
 
 # 打印
 RUN echo '打包结束!'
