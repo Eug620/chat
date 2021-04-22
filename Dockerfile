@@ -4,6 +4,8 @@ FROM node as builder
 RUN npm --version
 RUN node -v
 
+RUN npm install -g npm@7.10.0
+
 # 全局安装yarn
 RUN npm i -g yarn
 
