@@ -1,4 +1,4 @@
-FROM node:12.13.0-alpine as builder
+FROM node as builder
 
 # 打印node版本和npm版本
 RUN npm --version
