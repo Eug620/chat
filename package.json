@@ -1,7 +1,7 @@
 {
   "name": "chat",
   "version": "0.0.1",
-  "homepage": "https://eug620.github.io",
+  "homepage": "https://eug620.github.io/chat",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
