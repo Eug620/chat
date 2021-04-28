@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:42:17
- * @LastEditTime : 2021-04-28 17:50:55
+ * @LastEditTime : 2021-04-28 17:55:21
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/vite.config.js
@@ -18,7 +18,5 @@ export default {
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         }
-    },
-    base: './',
-    assetsDir: 'assets'
+    }
 }
