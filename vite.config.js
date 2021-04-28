@@ -19,6 +19,6 @@ export default {
           rewrite: path => path.replace(/^\/api/, '')
         }
     },
-    // base: './',
-    // assetsDir: 'assets'
+    base: './',
+    assetsDir: 'assets'
 }
