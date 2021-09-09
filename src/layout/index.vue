@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-04-20 17:53:05
+ * @LastEditTime : 2021-09-09 17:16:21
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -25,7 +25,7 @@
                   :class="useActiveMenuClass(menu)"
                   @click.native="useActiveCurrentMenu(menu)"
                 >
-                  {{ menu.name }}
+                  {{ menu.title }}
                 </router-link>
               </div>
             </div>

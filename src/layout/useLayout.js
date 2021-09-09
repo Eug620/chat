@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-10 17:44:35
- * @LastEditTime : 2021-04-20 15:24:01
+ * @LastEditTime : 2021-09-09 18:16:21
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/useLayout.js
@@ -16,17 +16,7 @@ export const useLayoutStates = (props) => {
     keepAliveArray: [],
     currentVM: null,
     activeMenu: 'Dashboard',
-    menuList: [
-      {
-        name: 'Dashboard',
-        isActive: false
-      },
-      {
-        name:'HotList',
-        isActive: false 
-      }
-      // 'MarkdownEdit'
-    ],
+    menuList: lib.MENU_LIST,
     msgOption: {
       isShow: false,
       msgText: '这是一段提示信息',
