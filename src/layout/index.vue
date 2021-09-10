@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:16:43
- * @LastEditTime : 2021-09-10 15:11:24
+ * @LastEditTime : 2021-09-10 19:52:41
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/layout/index.vue
@@ -69,6 +69,7 @@
         </keep-alive>
       </transition>
     </router-view>
+    <layout-screen-saver></layout-screen-saver>
   </div>
 </template>
 
