@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-04-20 16:54:14
+ * @LastEditTime : 2021-09-10 15:09:18
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -20,7 +20,7 @@
             <div class="md:flex-shrink-0">
               <img
                 class="h-48 w-full object-cover md:w-48"
-                src="https://images.unsplash.com/photo-1515711660811-48832a4c6f69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
+                src="https://farm5.staticflickr.com/4397/36576053190_37d6a72e14_k.jpg?momo_cache_bg_uuid=c1cb8ab8-9cbf-4f9d-b3e8-36ed985f9525"
                 alt="Man looking at item at a store"
               />
             </div>
