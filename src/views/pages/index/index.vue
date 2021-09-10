@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-10 17:30:05
- * @LastEditTime : 2021-09-10 15:09:18
+ * @LastEditTime : 2021-09-10 17:34:52
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/pages/index/index.vue
@@ -42,7 +42,7 @@
                   浏览量 : {{ item.page_views }}
                 </span>
                 <span class="absolute right-16">
-                  发布日期 : {{ lib.FormatTimer(item.create_time) }}
+                  发布日期 : {{ lib.FormatTimerSecond(item.create_time) }}
                 </span>
               </div>
             </div>
