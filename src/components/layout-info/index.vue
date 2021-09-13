@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-03-26 13:55:14
- * @LastEditTime : 2021-04-20 15:39:07
+ * @LastEditTime : 2021-09-13 16:44:51
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/layout-info/index.vue
@@ -123,6 +123,7 @@
                       <label class="sr-only">Password</label>
                       <input
                         type="password"
+                        autocomplete="on"
                         v-model="account.user_password"
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Password"

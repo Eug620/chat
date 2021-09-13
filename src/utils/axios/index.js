@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:25:28
- * @LastEditTime : 2021-03-26 18:12:12
+ * @LastEditTime : 2021-09-13 16:58:27
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/utils/axios/index.js
@@ -39,7 +39,7 @@ service.interceptors.request.use(
   config => {
     // 在请求发送之前做一些处理
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-    config.headers['X-Token'] = process.env.VUE_APP_VERSION
+    config.headers['X-Token'] = 'XXXXXXXX'
     return config
   },
   error => {

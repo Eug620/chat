@@ -1,24 +1,37 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:42:17
- * @LastEditTime : 2021-04-28 18:33:44
+ * @LastEditTime : 2021-09-13 17:38:11
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/vite.config.js
  */
-const {resolve} = require('path')
+const { resolve } = require('path')
+import vue from '@vitejs/plugin-vue'
+
 export default {
-    alias: {
-        '/@/': resolve(__dirname, 'src')
-    },
-    proxy: {
-        '/api': {
-          target: 'http://47.93.229.170:3000',
-          // target: 'http://localhost:3000',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
+    plugins: [vue()],
+    resolve: {
+        alias: {
+            '/@': resolve(__dirname, 'src')
         }
     },
+    server: {
+        host: '0.0.0.0',
+        port: 3000,
+        proxy: {
+            '/api': {
+                target: 'http://47.93.229.170:3000',
+                // target: 'http://localhost:3000',
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/api/, '')
+            }
+        }
+
+    },
     base: './',
-    assetsDir: 'assets'
+    build: {
+        assetsDir: 'assets',
+        sourcemap: true
+    }
 }
