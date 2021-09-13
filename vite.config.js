@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:42:17
- * @LastEditTime : 2021-09-13 17:38:11
+ * @LastEditTime : 2021-09-13 17:47:00
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/vite.config.js
@@ -32,6 +32,6 @@ export default {
     base: './',
     build: {
         assetsDir: 'assets',
-        sourcemap: true
+        // sourcemap: true
     }
 }
