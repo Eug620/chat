@@ -1,4 +1,4 @@
-/* 
+/*
  * @Author       : Eug
  * @Date         : 2021-04-02 11:26:17
  * @LastEditTime : 2021-04-20 16:43:02
@@ -13,6 +13,7 @@ export const useStates = (props) => {
   return reactive({
     currentVM: null,
     background: '',
+    isGetDeatilLoading: true,
     detail: {
       article_id: '',
       article_title: '暂无标题',
@@ -38,6 +39,7 @@ export const useArticle = (props, state, {emit}) => {
   }
   const useGetArticleDetail = async () => {
     try {
+      state.isGetDeatilLoading = true
       const { article_id } = state.currentVM.$route.query
       let res = await server.DetailArticle({article_id})
       if (res.code === 200) {
@@ -49,7 +51,9 @@ export const useArticle = (props, state, {emit}) => {
           msgColor: 'msgColor',
         })
       }
+      state.isGetDeatilLoading = false
     } catch (error) {
+      state.isGetDeatilLoading = false
       console.error(error)
     }
   }
