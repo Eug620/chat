@@ -1,4 +1,4 @@
-/* 
+/*
  * @Author       : Eug
  * @Date         : 2021-03-09 14:49:17
  * @LastEditTime : 2021-03-26 16:54:14
@@ -34,6 +34,5 @@ export const useAppStates = (props) => {
 }
 
 export const useApp = (props, states, ctx) => {
-  return {
-  }
+  return {}
 }
