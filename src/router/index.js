@@ -1,4 +1,4 @@
-/* 
+/*
  * @Author       : Eug
  * @Date         : 2021-03-09 16:23:25
  * @LastEditTime : 2021-04-20 15:48:51
@@ -63,6 +63,6 @@ const router = createRouter({
 
     // return desired position
   }
-});
+})
 
 export default router
