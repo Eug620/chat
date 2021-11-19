@@ -35,7 +35,7 @@ WORKDIR /data
 COPY . /data
 
 # build测试服项目
-RUN npm run build:p
+RUN npm run build
 
 # 打印
 RUN echo '服务器 build done.'
@@ -45,4 +45,4 @@ RUN echo '服务器 build done.'
 # FROM nginx:alpine
 
 # 把打包后的目录移动到nginx默认的前端目录
-# COPY --from=builder /data/dist /usr/share/nginx/html
+COPY --from=builder /data/dist/* /root/usr/local/nginx/html/
