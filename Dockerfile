@@ -45,4 +45,4 @@ RUN echo '服务器 build done.'
 # FROM nginx:alpine
 
 # 把打包后的目录移动到nginx默认的前端目录
-COPY --from=builder /data/dist/* /root/usr/local/nginx/html/
+COPY --from=builder /data/dist /root/usr/local/nginx/html
