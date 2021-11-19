@@ -16,8 +16,7 @@ import { defineComponent, toRefs, onMounted } from 'vue'
 import { useAppStates } from './useApp'
 export default defineComponent({
   name: 'App',
-  components: {
-  },
+  components: {},
   setup (props, ctx) {
     const state = useAppStates(props)
     // const { } = useApp(props, state, ctx)
