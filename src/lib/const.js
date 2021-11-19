@@ -21,15 +21,15 @@ export default {
   ],
   HOT_LIST_NAV: [
     {
-      label: '关注',
+      label: 'Follow',
       value: 'follow'
     },
     {
-      label: '推荐',
+      label: 'Recommend',
       value: 'recommend'
     },
     {
-      label: '热榜',
+      label: 'Hot',
       value: 'hot'
     }
   ]
