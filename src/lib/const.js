@@ -1,4 +1,4 @@
-/* 
+/*
  * @Author       : Eug
  * @Date         : 2021-09-09 17:18:44
  * @LastEditTime : 2021-09-09 18:16:08
@@ -9,14 +9,14 @@
 export default {
   MENU_LIST:[
     {
-      title: '首页',
+      title: 'Dashboard',
       name: 'Dashboard',
       isActive: false
     },
     {
-      title: '分类',
+      title: 'HotList',
       name:'HotList',
-      isActive: false 
+      isActive: false
     }
   ],
   HOT_LIST_NAV: [
