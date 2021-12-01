@@ -1,24 +1,27 @@
 <!--
  * @Author       : Eug
- * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-09-13 17:10:16
+ * @Date         : 2021-11-22 11:00:09
+ * @LastEditTime : 2021-12-01 15:02:57
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /chat/index.html
+ * @FilePath     : /new-chat/index.html
 -->
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <link rel="icon" href="./favicon.ico" />
-  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eug</title>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
   <style>
-    body,html{
+    body,
+    html {
       margin: 0;
       padding: 0;
     }
+
     .chat-loadings {
       width: 100vw;
       height: 100vh;
@@ -43,24 +46,29 @@
       stroke-dasharray: 7% 28%;
       stroke-width: 3px;
       -webkit-animation: stroke-offset 9s infinite linear;
-              animation: stroke-offset 9s infinite linear;
+      animation: stroke-offset 9s infinite linear;
     }
+
     .chat-loadings .text-copy:nth-child(1) {
       stroke: #360745;
       stroke-dashoffset: 7%;
     }
+
     .chat-loadings .text-copy:nth-child(2) {
       stroke: #D61C59;
       stroke-dashoffset: 14%;
     }
+
     .chat-loadings .text-copy:nth-child(3) {
       stroke: #E7D84B;
       stroke-dashoffset: 21%;
     }
+
     .chat-loadings .text-copy:nth-child(4) {
       stroke: #EFEAC5;
       stroke-dashoffset: 28%;
     }
+
     .chat-loadings .text-copy:nth-child(5) {
       stroke: #1B8798;
       stroke-dashoffset: 35%;
@@ -80,17 +88,18 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="./assets/index.f8cc52c6.js"></script>
-    <link rel="modulepreload" href="./assets/vendor.50df1612.js">
-    <link rel="stylesheet" href="./assets/index.b703e10a.css">
-  </head>
+  <script type="module" crossorigin src="./assets/index.085b800a.js"></script>
+  <link rel="modulepreload" href="./assets/vendor.8210c007.js">
+  <link rel="stylesheet" href="./assets/index.acf2aaee.css">
+</head>
+
 <body>
   <div id="app">
     <!-- Loading -->
     <div class="chat-loadings">
       <svg viewBox="0 0 800 600">
         <symbol id="s-text">
-          <text text-anchor="middle" x="50%" y="50%" class="text--line" >Loading</text>
+          <text text-anchor="middle" x="50%" y="50%" class="text--line">Loading</text>
         </symbol>
         <g class="g-ants">
           <use xlink:href="#s-text" class="text-copy"></use>
@@ -104,4 +113,5 @@
   </div>
   
 </body>
+
 </html>
