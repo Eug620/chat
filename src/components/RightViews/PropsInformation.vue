@@ -1,10 +1,10 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-30 14:24:18
- * @LastEditTime : 2021-11-30 15:10:57
+ * @LastEditTime : 2021-12-01 16:04:20
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/RightViews/PropsInformation.vue
+ * @FilePath     : /chat/src/components/RightViews/PropsInformation.vue
 -->
 <template>
   <el-card shadow="never" class="PropsInformation">
@@ -13,7 +13,7 @@
       :text-inside="true"
       :stroke-width="12"
       type="line"
-      :percentage="useTops"
+      :percentage="useTops || 0"
       status="success"
       class="PropsInformation-progress"
     >
