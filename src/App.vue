@@ -1,28 +1,17 @@
 <!--
  * @Author       : Eug
- * @Date         : 2021-03-09 12:33:38
- * @LastEditTime : 2021-03-26 16:15:17
+ * @Date         : 2021-11-22 11:00:09
+ * @LastEditTime : 2021-11-22 11:18:16
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /chat/src/App.vue
+ * @FilePath     : /new-chat/src/App.vue
 -->
+<script setup>
+</script>
+
 <template>
   <router-view/>
 </template>
 
-<script>
-import { defineComponent, toRefs, onMounted } from 'vue'
-// import { useAppStates, useApp } from './useApp'
-import { useAppStates } from './useApp'
-export default defineComponent({
-  name: 'App',
-  components: {},
-  setup (props, ctx) {
-    const state = useAppStates(props)
-    // const { } = useApp(props, state, ctx)
-    return {
-      ...toRefs(state)
-    }
-  }
-})
-</script>
+<style lang="scss" >
+</style>

@@ -1,68 +1,64 @@
-/*
+/* 
  * @Author       : Eug
- * @Date         : 2021-03-09 16:23:25
- * @LastEditTime : 2021-04-20 15:48:51
+ * @Date         : 2021-11-22 11:12:01
+ * @LastEditTime : 2021-11-30 15:24:56
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /chat/src/router/index.js
+ * @FilePath     : /new-chat/src/router/index.js
  */
-import { createRouter, createWebHashHistory } from 'vue-router'
-import layout from '/@/layout/index.vue'
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   {
     path:'/',
     name:'layout',
-    component:layout,
-    redirect: 'Dashboard',
+    component:() => import('/@/layout/index.vue'),
+    redirect: 'news',
     children:[
       {
-        path: 'Dashboard',
-        name: 'Dashboard',
+        path: 'news',
+        name: 'news',
         meta: { keepAlive: true },
-        component: () => import('/@/views/pages/index/index.vue')
+        component: () => import('/@/views/news/index.vue')
       },
       {
-        path: 'HotList',
-        name: 'HotList',
+        path: 'hot',
+        name: 'hot',
         meta: { keepAlive: true },
-        component: () => import('/@/views/pages/hot-list/index.vue')
+        component: () => import('/@/views/hot/index.vue')
       },
       {
-        path: 'MarkdownEdit',
-        name: 'MarkdownEdit',
-        meta: { keepAlive: false },
-        component: () => import('/@/views/pages/markdown-edit/index.vue')
+        path: 'interface',
+        name: 'interface',
+        meta: { keepAlive: true },
+        component: () => import('/@/views/interface/index.vue')
       },
       {
-        path: 'ArticleDetail',
-        name: 'ArticleDetail',
-        meta: { keepAlive: false },
-        component: () => import('/@/views/pages/article/index.vue')
+        path: 'user',
+        name: 'user',
+        meta: { keepAlive: true },
+        component: () => import('/@/views/user/index.vue')
+      },
+      {
+        path: 'detail',
+        name: 'detail',
+        meta: { keepAlive: false, isLabel: true },
+        component: () => import('/@/views/detail/index.vue')
+      },
+      {
+        path: 'create',
+        name: 'create',
+        meta: { keepAlive: false, isLabel: true },
+        component: () => import('/@/views/create/index.vue')
       }
     ]
   },
-  {
-    path:'/login',
-    name:'login',
-    component: () => import('/@/views/pages/login/index.vue')
-  }
+  { path: '/:pathMatch(.*)*', component: () => import('/@/views/NotFound/index.vue') }
 ]
 
-const router = createRouter({
-  // history: createWebHistory(),
-  history: createWebHashHistory(), // hash
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    // console.log(to, from, savedPosition);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ left: 0, top: 0 })
-      }, 500)
-    })
-
-    // return desired position
-  }
+const rotuer = createRouter({
+  history: createWebHashHistory(),
+  routes
 })
 
-export default router
+export default rotuer
