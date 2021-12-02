@@ -1,17 +1,17 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:24:25
- * @LastEditTime : 2021-04-02 14:13:08
+ * @LastEditTime : 2021-12-02 15:17:38
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/server/index.js
  */
 import user from './user'
 import article from './article'
-import image from './iamge'
+import _interface from './interface'
 
 export default {
   ...user,
   ...article,
-  ...image
+  ..._interface
 }
