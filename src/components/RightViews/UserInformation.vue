@@ -1,10 +1,10 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-01 11:43:44
- * @LastEditTime : 2021-12-01 14:51:24
+ * @LastEditTime : 2021-12-02 17:16:29
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/RightViews/UserInformation.vue
+ * @FilePath     : /chat/src/components/RightViews/UserInformation.vue
 -->
 <template>
   <el-card shadow="never" class="UserInformation">
@@ -29,6 +29,7 @@
             ref="refUserName"
             prefix-icon="avatar"
             v-model="userForm.user_name"
+            placeholder="测试账户: admin"
           ></el-input>
         </el-form-item>
         <el-form-item prop="user_password">
@@ -37,6 +38,7 @@
             ref="refUserPassword"
             prefix-icon="lock"
             v-model="userForm.user_password"
+            placeholder="测试密码: admin"
             show-password
           ></el-input>
         </el-form-item>
