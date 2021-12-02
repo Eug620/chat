@@ -1,15 +1,15 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-29 18:34:51
- * @LastEditTime : 2021-11-30 15:15:09
+ * @LastEditTime : 2021-12-02 17:42:14
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/views/detail/index.vue
+ * @FilePath     : /chat/src/views/detail/index.vue
 -->
 <template>
   <el-row :gutter="20">
     <el-col :span="16">
-      <el-card shadow="never" class="view-detail">
+      <el-card shadow="never" class="view-detail border-0">
         <template v-if="isLoading">
           <LoadAnimation />
         </template>

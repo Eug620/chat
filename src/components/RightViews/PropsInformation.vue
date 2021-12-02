@@ -1,13 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-30 14:24:18
- * @LastEditTime : 2021-12-01 16:04:20
+ * @LastEditTime : 2021-12-02 17:36:11
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/PropsInformation.vue
 -->
 <template>
-  <el-card shadow="never" class="PropsInformation">
+  <el-card shadow="never" class="PropsInformation border-0">
     <el-divider content-position="left">{{ props.PropsInformationInfo.title }}</el-divider>
     <el-progress
       :text-inside="true"

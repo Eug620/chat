@@ -1,13 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-01 11:43:44
- * @LastEditTime : 2021-12-02 17:16:29
+ * @LastEditTime : 2021-12-02 17:36:07
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/UserInformation.vue
 -->
 <template>
-  <el-card shadow="never" class="UserInformation">
+  <el-card shadow="never" class="UserInformation border-0">
     <el-divider content-position="left">{{ isLogin ? '已登录' : '请登录' }}</el-divider>
     <template v-if="isLogin">
       <el-descriptions :column="1" size="mini" border>

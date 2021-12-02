@@ -1,15 +1,15 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:14:32
- * @LastEditTime : 2021-11-30 15:46:53
+ * @LastEditTime : 2021-12-02 17:40:32
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/views/news/index.vue
+ * @FilePath     : /chat/src/views/news/index.vue
 -->
 <template>
   <el-row :gutter="20">
     <el-col :span="16">
-      <el-card shadow="never" class="card-list">
+      <el-card shadow="never" class="card-list border-0">
         <TitleItem :ArticleList="news" :isEnd="isEnd" />
       </el-card>
     </el-col>

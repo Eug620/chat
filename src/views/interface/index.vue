@@ -1,14 +1,14 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:31
- * @LastEditTime : 2021-12-02 17:06:30
+ * @LastEditTime : 2021-12-02 17:42:26
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/interface/index.vue
 -->
 <template>
   <div class="chat-interface">
-    <el-card shadow="never" class="chat-interface-card">
+    <el-card shadow="never" class="chat-interface-card border-0">
       <el-date-picker
         v-model="datePicker"
         type="daterange"
@@ -18,7 +18,7 @@
         @change="useChange"
       ></el-date-picker>
     </el-card>
-    <el-card shadow="never" class="chat-interface-card" :key="item" v-for="item in TypeList">
+    <el-card shadow="never" class="chat-interface-card border-0" :key="item" v-for="item in TypeList">
       <template #header>{{item}}</template>
       <div class="logview" :id="`id_${item}`"></div>
     </el-card>

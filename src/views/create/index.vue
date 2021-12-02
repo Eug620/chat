@@ -1,14 +1,14 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-30 15:24:18
- * @LastEditTime : 2021-12-01 12:40:54
+ * @LastEditTime : 2021-12-02 17:42:15
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/views/create/index.vue
+ * @FilePath     : /chat/src/views/create/index.vue
 -->
 <template>
   <div class="chat-create">
-    <el-card class="chat-create-item">
+    <el-card class="chat-create-item border-0">
       <el-form class="chat-create-form" ref="refForm" :model="form" label-width="auto" inline>
         <el-form-item label="标题">
           <el-input prefix-icon="postcard" size="small" v-model="form.title"></el-input>
@@ -30,7 +30,7 @@
       :toolbars="editorToolBars"
     />
 
-    <el-card class="chat-create-item">
+    <el-card class="chat-create-item border-0">
       <el-button circle :icon="Check" :disabled="!isLogin" @click="useSave"></el-button>
       <el-button circle :icon="Close" @click="useCancel"></el-button>
       <el-button

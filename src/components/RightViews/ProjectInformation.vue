@@ -1,13 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-25 15:22:50
- * @LastEditTime : 2021-11-25 18:25:32
+ * @LastEditTime : 2021-12-02 17:36:12
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/RightViews/ProjectInformation.vue
+ * @FilePath     : /chat/src/components/RightViews/ProjectInformation.vue
 -->
 <template>
-  <el-card shadow="never" class="ProjectInformation">
+  <el-card shadow="never" class="ProjectInformation border-0">
     <el-divider content-position="left">Project Information</el-divider>
     <el-collapse accordion>
       <el-collapse-item title="scripts" name="scripts">

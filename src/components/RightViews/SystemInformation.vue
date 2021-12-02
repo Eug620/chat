@@ -1,13 +1,13 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-25 15:23:25
- * @LastEditTime : 2021-11-29 17:20:33
+ * @LastEditTime : 2021-12-02 17:36:09
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/RightViews/SystemInformation.vue
+ * @FilePath     : /chat/src/components/RightViews/SystemInformation.vue
 -->
 <template>
-  <el-card shadow="never" class="SystemInformation">
+  <el-card shadow="never" class="SystemInformation border-0">
     <el-divider content-position="left">System Information</el-divider>
     <el-progress
       :text-inside="true"
