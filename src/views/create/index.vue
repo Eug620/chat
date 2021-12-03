@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-30 15:24:18
- * @LastEditTime : 2021-12-02 17:42:15
+ * @LastEditTime : 2021-12-03 13:27:42
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/create/index.vue
@@ -9,12 +9,16 @@
 <template>
   <div class="chat-create">
     <el-card class="chat-create-item border-0">
-      <el-form class="chat-create-form" ref="refForm" :model="form" label-width="auto" inline>
-        <el-form-item label="标题">
-          <el-input prefix-icon="postcard" size="small" v-model="form.title"></el-input>
+      <el-form class="chat-create-form" ref="refForm" :model="form" label-width="auto">
+        <el-form-item>
+          <el-input prefix-icon="postcard" v-model="form.title" placeholder="请输入标题">
+            <template #prepend>标题:</template>
+          </el-input>
         </el-form-item>
-        <el-form-item label="描述">
-          <el-input prefix-icon="message" size="small" v-model="form.describe"></el-input>
+        <el-form-item style="margin-bottom:0;">
+          <el-input prefix-icon="message" v-model="form.describe" placeholder="请输入描述">
+            <template #prepend>描述:</template>
+          </el-input>
         </el-form-item>
       </el-form>
     </el-card>
@@ -31,137 +35,144 @@
     />
 
     <el-card class="chat-create-item border-0">
-      <el-button circle :icon="Check" :disabled="!isLogin" @click="useSave"></el-button>
+      <el-tooltip effect="dark" content="请先登录" placement="top" :disabled="isLogin">
+        <div class="chat-create-item-button">
+          <el-button circle :icon="Check" :disabled="!isLogin" @click="useSave"></el-button>
+        </div>
+      </el-tooltip>
       <el-button circle :icon="Close" @click="useCancel"></el-button>
       <el-button
         class="chat-create-item-setting"
         circle
-        type="danger"
+        :type="drawer ? 'info' : 'danger'"
         @click="useShowSetting"
-        :icon="Setting"
+        :icon="drawer ? CircleClose : Setting"
       ></el-button>
     </el-card>
-
-    <el-drawer
-      custom-class="chat-create-drawer"
-      v-model="drawer"
-      title="Editor Setting"
-      direction="rtl"
-    >
-      <el-scrollbar>
-        <el-divider content-position="left">Editor Setting</el-divider>
-        <el-form
-          class="chat-create-form-setting"
-          ref="refSettingForm"
-          :model="editorSetting"
-          label-width="120px"
-          label-position="top"
-        >
-          <el-form-item label="fontSize">
-            <el-input v-model="editorSetting.fontSize"></el-input>
-          </el-form-item>
-          <el-form-item label="language">
-            <el-select v-model="editorSetting.language" placeholder="Select">
-              <el-option
-                v-for="item in languageOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="boxShadow">
-            <el-switch v-model="editorSetting.boxShadow" />
-          </el-form-item>
-          <el-form-item label="scrollStyle">
-            <el-switch v-model="editorSetting.scrollStyle" />
-          </el-form-item>
-          <el-form-item label="boxShadowStyle">
-            <el-input v-model="editorSetting.boxShadowStyle"></el-input>
-          </el-form-item>
-          <el-form-item label="transition">
-            <el-switch v-model="editorSetting.transition" />
-          </el-form-item>
-          <el-form-item label="toolbarsBackground">
-            <el-color-picker v-model="editorSetting.toolbarsBackground" />
-          </el-form-item>
-          <el-form-item label="previewBackground">
-            <el-color-picker v-model="editorSetting.previewBackground" />
-          </el-form-item>
-          <el-form-item label="subfield">
-            <el-switch v-model="editorSetting.subfield" />
-          </el-form-item>
-          <el-form-item label="defaultOpen">
-            <el-select v-model="editorSetting.defaultOpen" placeholder="Select">
-              <el-option
-                v-for="item in defaultOpenOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="placeholder">
-            <el-input v-model="editorSetting.placeholder"></el-input>
-          </el-form-item>
-          <el-form-item label="editable">
-            <el-switch v-model="editorSetting.editable" />
-          </el-form-item>
-          <el-form-item label="codeStyle">
-            <el-select v-model="editorSetting.codeStyle" placeholder="Select">
-              <el-option
-                v-for="item in codeStyleOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="toolbarsFlag">
-            <el-switch v-model="editorSetting.toolbarsFlag" />
-          </el-form-item>
-          <el-form-item label="navigation">
-            <el-switch v-model="editorSetting.navigation" />
-          </el-form-item>
-          <el-form-item label="shortCut">
-            <el-switch v-model="editorSetting.shortCut" />
-          </el-form-item>
-          <el-form-item label="autofocus">
-            <el-switch v-model="editorSetting.autofocus" />
-          </el-form-item>
-          <el-form-item label="ishljs">
-            <el-switch v-model="editorSetting.ishljs" />
-          </el-form-item>
-        </el-form>
-        <el-divider content-position="left">editor ToolBars</el-divider>
-        <el-form
-          class="chat-create-form-ToolBars"
-          ref="refToolBarsForm"
-          :model="editorToolBars"
-          label-width="120px"
-          label-position="top"
-        >
-          <el-form-item :label="tools" v-for="(val, tools) in editorToolBars" :key="tools">
-            <el-switch v-model="editorToolBars[tools]" />
-          </el-form-item>
-        </el-form>
-      </el-scrollbar>
-    </el-drawer>
+    <transition name="el-fade-in-linear">
+      <div v-show="drawer" class="chat-create-editor-config">
+        <el-card class="chat-create-item border-0">
+          <el-divider content-position="left">Editor Setting</el-divider>
+          <el-form
+            size="mini"
+            class="chat-create-form-setting"
+            ref="refSettingForm"
+            :model="editorSetting"
+            label-width="auto"
+            label-position="left"
+          >
+            <el-form-item label="fontSize">
+              <el-input v-model="editorSetting.fontSize"></el-input>
+            </el-form-item>
+            <el-form-item label="language">
+              <el-select v-model="editorSetting.language" placeholder="Select">
+                <el-option
+                  v-for="item in languageOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="boxShadow">
+              <el-switch v-model="editorSetting.boxShadow" />
+            </el-form-item>
+            <el-form-item label="scrollStyle">
+              <el-switch v-model="editorSetting.scrollStyle" />
+            </el-form-item>
+            <el-form-item label="boxShadowStyle">
+              <el-input v-model="editorSetting.boxShadowStyle"></el-input>
+            </el-form-item>
+            <el-form-item label="transition">
+              <el-switch v-model="editorSetting.transition" />
+            </el-form-item>
+            <el-form-item label="toolbarsBackground">
+              <el-color-picker v-model="editorSetting.toolbarsBackground" />
+            </el-form-item>
+            <el-form-item label="previewBackground">
+              <el-color-picker v-model="editorSetting.previewBackground" />
+            </el-form-item>
+            <el-form-item label="subfield">
+              <el-switch v-model="editorSetting.subfield" />
+            </el-form-item>
+            <el-form-item label="defaultOpen">
+              <el-select v-model="editorSetting.defaultOpen" placeholder="Select">
+                <el-option
+                  v-for="item in defaultOpenOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="placeholder">
+              <el-input v-model="editorSetting.placeholder"></el-input>
+            </el-form-item>
+            <el-form-item label="editable">
+              <el-switch v-model="editorSetting.editable" />
+            </el-form-item>
+            <el-form-item label="codeStyle">
+              <el-select v-model="editorSetting.codeStyle" placeholder="Select">
+                <el-option
+                  v-for="item in codeStyleOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="toolbarsFlag">
+              <el-switch v-model="editorSetting.toolbarsFlag" />
+            </el-form-item>
+            <el-form-item label="navigation">
+              <el-switch v-model="editorSetting.navigation" />
+            </el-form-item>
+            <el-form-item label="shortCut">
+              <el-switch v-model="editorSetting.shortCut" />
+            </el-form-item>
+            <el-form-item label="autofocus">
+              <el-switch v-model="editorSetting.autofocus" />
+            </el-form-item>
+            <el-form-item label="ishljs">
+              <el-switch v-model="editorSetting.ishljs" />
+            </el-form-item>
+          </el-form>
+        </el-card>
+        <el-card class="border-0">
+          <el-divider content-position="left">editor ToolBars</el-divider>
+          <el-form
+            size="mini"
+            class="chat-create-form-ToolBars"
+            ref="refToolBarsForm"
+            :model="editorToolBars"
+            label-width="auto"
+            label-position="left"
+          >
+            <el-form-item :label="tools" v-for="(val, tools) in editorToolBars" :key="tools">
+              <el-switch v-model="editorToolBars[tools]" />
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed } from "vue";
 import { str } from "./index";
-import { Check, Setting, Close } from "@element-plus/icons";
+import { Check, Setting, Close, CircleClose } from "@element-plus/icons";
 import servers from "/@/server";
 import { useUserStore } from "/@/store/User";
+import { useHomeStore } from "/@/store/Home";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { ElNotification } from "element-plus";
-
+import { languageOptions, defaultOpenOptions, codeStyleOptions } from "./Const";
+const HomeStore = useHomeStore();
 const UserStore = useUserStore();
 const { isLogin, userInfo } = storeToRefs(UserStore);
+const { getLayoutWidth, getNavigationHeight } = storeToRefs(HomeStore);
 const Router = useRouter();
 const form = reactive({
   title: "",
@@ -171,7 +182,7 @@ const form = reactive({
 const drawer = ref(false);
 
 const useShowSetting = () => {
-  drawer.value = true;
+  drawer.value = !drawer.value;
 };
 
 const editorSetting = reactive({
@@ -238,370 +249,7 @@ const fullScreenStatus = ref(false);
 const useFullScreen = v => {
   fullScreenStatus.value = v;
 };
-const languageOptions = [
-  {
-    label: "简体中文",
-    value: "zh-CN"
-  },
-  {
-    label: "正体中文",
-    value: "zh-TW"
-  },
-  {
-    label: "英文",
-    value: "en"
-  },
-  {
-    label: "法语",
-    value: "fr"
-  },
-  {
-    label: "葡萄牙语",
-    value: "pt-BR"
-  },
-  {
-    label: "俄语",
-    value: "ru"
-  },
-  {
-    label: "德语",
-    value: "de"
-  },
-  {
-    label: "日语",
-    value: "ja"
-  }
-];
 
-const defaultOpenOptions = [
-  {
-    label: "默认展示编辑区域",
-    value: "edit"
-  },
-  {
-    label: "默认展示预览区域",
-    value: "preview"
-  }
-];
-
-const codeStyleOptions = [
-  {
-    label: "agate",
-    value: "agate"
-  },
-  {
-    label: "androidstudio",
-    value: "androidstudio"
-  },
-  {
-    label: "arduino-light",
-    value: "arduino-light"
-  },
-  {
-    label: "arta",
-    value: "arta"
-  },
-  {
-    label: "ascetic",
-    value: "ascetic"
-  },
-  {
-    label: "atelier-cave-dark",
-    value: "atelier-cave-dark"
-  },
-  {
-    label: "atelier-cave-light",
-    value: "atelier-cave-light"
-  },
-  {
-    label: "atelier-dune-dark",
-    value: "atelier-dune-dark"
-  },
-  {
-    label: "atelier-dune-light",
-    value: "atelier-dune-light"
-  },
-  {
-    label: "atelier-estuary-dark",
-    value: "atelier-estuary-dark"
-  },
-  {
-    label: "atelier-estuary-light",
-    value: "atelier-estuary-light"
-  },
-  {
-    label: "atelier-forest-dark",
-    value: "atelier-forest-dark"
-  },
-  {
-    label: "atelier-forest-light",
-    value: "atelier-forest-light"
-  },
-  {
-    label: "atelier-heath-dark",
-    value: "atelier-heath-dark"
-  },
-  {
-    label: "atelier-heath-light",
-    value: "atelier-heath-light"
-  },
-  {
-    label: "atelier-lakeside-dark",
-    value: "atelier-lakeside-dark"
-  },
-  {
-    label: "atelier-lakeside-light",
-    value: "atelier-lakeside-light"
-  },
-  {
-    label: "atelier-plateau-dark",
-    value: "atelier-plateau-dark"
-  },
-  {
-    label: "atelier-plateau-light",
-    value: "atelier-plateau-light"
-  },
-  {
-    label: "atelier-savanna-dark",
-    value: "atelier-savanna-dark"
-  },
-  {
-    label: "atelier-savanna-light",
-    value: "atelier-savanna-light"
-  },
-  {
-    label: "atelier-seaside-dark",
-    value: "atelier-seaside-dark"
-  },
-  {
-    label: "atelier-seaside-light",
-    value: "atelier-seaside-light"
-  },
-  {
-    label: "atelier-sulphurpool-dark",
-    value: "atelier-sulphurpool-dark"
-  },
-  {
-    label: "atelier-sulphurpool-light",
-    value: "atelier-sulphurpool-light"
-  },
-  {
-    label: "atom-one-dark",
-    value: "atom-one-dark"
-  },
-  {
-    label: "atom-one-light",
-    value: "atom-one-light"
-  },
-  {
-    label: "brown-paper",
-    value: "brown-paper"
-  },
-  {
-    label: "codepen-embed",
-    value: "codepen-embed"
-  },
-  {
-    label: "color-brewer",
-    value: "color-brewer"
-  },
-  {
-    label: "darcula",
-    value: "darcula"
-  },
-  {
-    label: "dark",
-    value: "dark"
-  },
-  {
-    label: "darkula",
-    value: "darkula"
-  },
-  {
-    label: "default",
-    value: "default"
-  },
-  {
-    label: "docco",
-    value: "docco"
-  },
-  {
-    label: "dracula",
-    value: "dracula"
-  },
-  {
-    label: "far",
-    value: "far"
-  },
-  {
-    label: "foundation",
-    value: "foundation"
-  },
-  {
-    label: "github-gist",
-    value: "github-gist"
-  },
-  {
-    label: "github",
-    value: "github"
-  },
-  {
-    label: "googlecode",
-    value: "googlecode"
-  },
-  {
-    label: "grayscale",
-    value: "grayscale"
-  },
-  {
-    label: "gruvbox-dark",
-    value: "gruvbox-dark"
-  },
-  {
-    label: "gruvbox-light",
-    value: "gruvbox-light"
-  },
-  {
-    label: "hopscotch",
-    value: "hopscotch"
-  },
-  {
-    label: "hybrid",
-    value: "hybrid"
-  },
-  {
-    label: "idea",
-    value: "idea"
-  },
-  {
-    label: "ir-black",
-    value: "ir-black"
-  },
-  {
-    label: "kimbie.dark",
-    value: "kimbie.dark"
-  },
-  {
-    label: "kimbie.light",
-    value: "kimbie.light"
-  },
-  {
-    label: "magula",
-    value: "magula"
-  },
-  {
-    label: "mono-blue",
-    value: "mono-blue"
-  },
-  {
-    label: "monokai-sublime",
-    value: "monokai-sublime"
-  },
-  {
-    label: "monokai",
-    value: "monokai"
-  },
-  {
-    label: "obsidian",
-    value: "obsidian"
-  },
-  {
-    label: "ocean",
-    value: "ocean"
-  },
-  {
-    label: "paraiso-dark",
-    value: "paraiso-dark"
-  },
-  {
-    label: "paraiso-light",
-    value: "paraiso-light"
-  },
-  {
-    label: "pojoaque",
-    value: "pojoaque"
-  },
-  {
-    label: "purebasic",
-    value: "purebasic"
-  },
-  {
-    label: "qtcreator_dark",
-    value: "qtcreator_dark"
-  },
-  {
-    label: "qtcreator_light",
-    value: "qtcreator_light"
-  },
-  {
-    label: "railscasts",
-    value: "railscasts"
-  },
-  {
-    label: "rainbow",
-    value: "rainbow"
-  },
-  {
-    label: "routeros",
-    value: "routeros"
-  },
-  {
-    label: "school-book",
-    value: "school-book"
-  },
-  {
-    label: "solarized-dark",
-    value: "solarized-dark"
-  },
-  {
-    label: "solarized-light",
-    value: "solarized-light"
-  },
-  {
-    label: "sunburst",
-    value: "sunburst"
-  },
-  {
-    label: "tomorrow-night-blue",
-    value: "tomorrow-night-blue"
-  },
-  {
-    label: "tomorrow-night-bright",
-    value: "tomorrow-night-bright"
-  },
-  {
-    label: "tomorrow-night-eighties",
-    value: "tomorrow-night-eighties"
-  },
-  {
-    label: "tomorrow-night",
-    value: "tomorrow-night"
-  },
-  {
-    label: "tomorrow",
-    value: "tomorrow"
-  },
-  {
-    label: "vs",
-    value: "vs"
-  },
-  {
-    label: "vs2015",
-    value: "vs2015"
-  },
-  {
-    label: "xcode",
-    value: "xcode"
-  },
-  {
-    label: "xt256",
-    value: "xt256"
-  },
-  {
-    label: "zenburn",
-    value: "zenburn"
-  }
-];
 const useComWidth = computed(() => {
   return fullScreenStatus.value ? "100%" : "calc(100vh - 480px)";
 });
@@ -649,23 +297,31 @@ const useCancel = () => {
 
 <style lang="scss">
 .chat-create {
+  position: relative;
   &-item {
     margin-bottom: 10px;
     &-setting {
       float: right;
     }
+    &-button {
+      margin-right: 10px;
+      display: inline-block;
+    }
   }
   &-form {
   }
-  &-drawer {
-    max-width: 100vh;
-    .el-drawer__body {
-      max-height: calc(100vh - 70px);
-      overflow: scroll;
-    }
-  }
   &-editor {
-    max-height: calc(100vh - 480px);
+    min-height: calc(100vh - 340px);
+    max-height: calc(100vh - 340px);
   }
+}
+.chat-create-editor-config {
+  width: calc((100vw - v-bind(getLayoutWidth)) / 2 - 40px);
+  position: absolute;
+  max-height: calc(100vh - v-bind(getNavigationHeight) - 20px);
+  left: -20px;
+  overflow: scroll;
+  top: 0;
+  transform: translate(-100%, 0);
 }
 </style>
