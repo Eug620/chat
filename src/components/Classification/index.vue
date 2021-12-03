@@ -1,10 +1,10 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:22:48
- * @LastEditTime : 2021-11-23 12:14:39
+ * @LastEditTime : 2021-12-03 14:24:17
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/Classification/index.vue
+ * @FilePath     : /chat/src/components/Classification/index.vue
 -->
 <template>
   <el-button
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useHomeStore } from "/@/store/Home";
 import { useRouter, useRoute } from 'vue-router'
@@ -33,7 +33,8 @@ const {
   getLayoutWidth
 } = storeToRefs(HomeStore);
 
-const activeClassification = ref(Route.name || "");
+
+const activeClassification = computed(() => Route.name || "");
 
 const useChangeActiveClassification = v => {
   activeClassification.value = v;

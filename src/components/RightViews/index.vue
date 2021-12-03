@@ -1,21 +1,21 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:22:48
- * @LastEditTime : 2021-12-01 11:44:26
+ * @LastEditTime : 2021-12-03 16:52:22
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/components/RightViews/index.vue
+ * @FilePath     : /chat/src/components/RightViews/index.vue
 -->
 <template>
   <el-affix class="chat-home-right-views" :offset="useOffset">
     <!-- 用户信息 -->
-    <UserInformation/>
+    <UserInformation v-if="isShowUserInformation"/>
     <!-- 项目信息 -->
-    <ProjectInformation v-if="props.isShowProjectInformation"/>
+    <ProjectInformation v-if="isShowProjectInformation"/>
     <!-- 系统信息 -->
-    <SystemInformation v-if="props.isShowSystemInformation"/>
+    <SystemInformation v-if="isShowSystemInformation"/>
     <!-- 自定义信息 -->
-    <PropsInformation v-if="props.isShowPropsInformation" :PropsInformationInfo="PropsInformationInfo"/>
+    <PropsInformation v-if="isShowPropsInformation" :PropsInformationInfo="PropsInformationInfo"/>
   </el-affix>
 </template>
 
@@ -29,6 +29,10 @@ import PropsInformation from './PropsInformation.vue'
 import UserInformation from './UserInformation.vue'
 const props = defineProps({
   isShowProjectInformation: {
+    type: Boolean,
+    default: false
+  },
+  isShowUserInformation: {
     type: Boolean,
     default: false
   },

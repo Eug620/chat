@@ -2,3 +2,16 @@
   border: none !important;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 }
+
+// 前三个字体颜色
+@for $index from 0 through 2 {
+  .Title-Item-index-#{$index}{
+    color: #ff9607;
+  }
+}
+// 后面的字体颜色
+@for $index from 3 through 999 {
+  .Title-Item-index-#{$index}{
+    color: #999;
+  }
+}

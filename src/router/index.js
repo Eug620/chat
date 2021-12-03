@@ -1,10 +1,10 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-11-22 11:12:01
- * @LastEditTime : 2021-11-30 15:24:56
+ * @LastEditTime : 2021-12-03 16:55:21
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/router/index.js
+ * @FilePath     : /chat/src/router/index.js
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
 
@@ -42,7 +42,8 @@ const routes = [
       {
         path: 'detail',
         name: 'detail',
-        meta: { keepAlive: false, isLabel: true },
+        // meta: { keepAlive: false, isLabel: true },
+        meta: { keepAlive: false },
         component: () => import('/@/views/detail/index.vue')
       },
       {

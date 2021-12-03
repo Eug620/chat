@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:31
- * @LastEditTime : 2021-12-02 17:42:26
+ * @LastEditTime : 2021-12-03 17:02:18
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/interface/index.vue
@@ -137,7 +137,7 @@ const useInitEcharts = index => {
     var _data_ = [];
     logData.value.forEach(_item => {
       let wtf = _item["log_data"].find(v => v.name === item.name);
-      _data_.push(wtf["request"]);
+      _data_.push(wtf ? wtf.request : 0);
     });
     item["type"] = "line";
     item["stack"] = "Total";

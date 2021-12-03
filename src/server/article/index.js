@@ -1,10 +1,10 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:30:30
- * @LastEditTime : 2021-11-29 17:32:14
+ * @LastEditTime : 2021-12-03 15:58:26
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /new-chat/src/server/article/index.js
+ * @FilePath     : /chat/src/server/article/index.js
  */
 import request from '/@/utils/axios'
 
@@ -12,6 +12,7 @@ const Url = {
     server: {
         getArticle: '/article/getArticle',
         getArticleList: '/article/getArticleList',
+        getHotArticle: '/article/getHotArticle',
         createArticle: '/article/createArticle',
         detailArticle: '/article/detailArticle'
     }
@@ -28,6 +29,13 @@ export default {
     GetArticleList (params) {
         return request({
             url: Url['server'].getArticleList,
+            method: 'get',
+            params
+        })
+    },
+    GetHotArticle (params) {
+        return request({
+            url: Url['server'].getHotArticle,
             method: 'get',
             params
         })
