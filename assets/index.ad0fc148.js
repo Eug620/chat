@@ -1,0 +1,1 @@
+import{e,m as t,l as o}from"./vendor.5e04e70a.js";const r=e({id:"RouteStore",state:()=>({storeRoute:t(),storeRouter:o()}),getters:{getRouteMetaIsLabel(){return this.storeRoute.meta.isLabel||!1},getRouteMetaKeepAlive(){return this.storeRoute.meta.keepAlive||!1},getRouteQuery(){return this.storeRoute.query}}});export{r as u};
