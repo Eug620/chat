@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:14:32
- * @LastEditTime : 2021-12-02 17:40:32
+ * @LastEditTime : 2021-12-06 11:25:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/news/index.vue
@@ -33,7 +33,7 @@ const useTops = inject("useTops");
 watch(
   () => useTops.value,
   v => {
-    if (v === 100) {
+    if (v === 100 && !isEnd.value) {
       setTimeout(() => {
         useGetList();
       }, 500);
