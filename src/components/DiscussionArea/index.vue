@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-06 18:50:40
+ * @LastEditTime : 2021-12-06 19:51:40
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
@@ -30,7 +30,7 @@
         type="primary"
         :disabled="!isLogin || !commentValue"
         @click="useCommit"
-      >{{!isLogin || !commentValue ? '请先登录' : '发布'}}</el-button>
+      >{{!isLogin ? '请先登录' : '发布'}}</el-button>
     </div>
   </div>
 </template>
