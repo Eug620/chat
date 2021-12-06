@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-30 14:24:18
- * @LastEditTime : 2021-12-02 17:36:11
+ * @LastEditTime : 2021-12-06 11:18:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/PropsInformation.vue
@@ -46,7 +46,7 @@ const props = defineProps({
 
 <style lang="scss">
 .PropsInformation {
-  margin-top: 10px;
+  // margin-top: 10px;
   &-progress{
     margin-bottom: 10px;
   }

@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-25 15:23:25
- * @LastEditTime : 2021-12-02 17:36:09
+ * @LastEditTime : 2021-12-06 11:18:27
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/SystemInformation.vue
@@ -91,6 +91,6 @@ const useCompStatus = computed(() => {
 
 <style lang="scss">
 .SystemInformation {
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 </style>
