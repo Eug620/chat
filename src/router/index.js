@@ -1,13 +1,15 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-11-22 11:12:01
- * @LastEditTime : 2021-12-03 16:55:21
+ * @LastEditTime : 2021-12-06 19:43:47
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/router/index.js
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
-
+import { ElLoading } from "element-plus";
+import { reactive, nextTick } from 'vue'
+let loadings = reactive(null)
 const routes = [
   {
     path:'/',
@@ -60,6 +62,21 @@ const routes = [
 const rotuer = createRouter({
   history: createWebHashHistory(),
   routes
+})
+rotuer.beforeEach(async (to,form, next)=>{
+   loadings = ElLoading.service({
+    lock: true,
+    text: '加载中',
+    background: 'rgba(244, 245, 245, .7)',
+  })
+  next()
+})
+rotuer.afterEach((to) =>{
+  if (loadings) {
+    nextTick(() =>{
+      loadings.close()
+    })
+  }
 })
 
 export default rotuer
