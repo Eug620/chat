@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:22:48
- * @LastEditTime : 2021-12-03 16:47:42
+ * @LastEditTime : 2021-12-07 17:43:43
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/TitleItem/index.vue
@@ -36,7 +36,7 @@
             <el-icon>
               <chat-round />
             </el-icon>
-            <span>0</span>
+            <span>{{Article.article_count}}</span>
           </el-button>
         </div>
       </div>

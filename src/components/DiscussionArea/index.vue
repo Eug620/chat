@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-06 19:51:40
+ * @LastEditTime : 2021-12-07 17:51:37
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
@@ -9,7 +9,7 @@
 <template>
   <div class="DiscussionArea" v-loading="comment_loading">
     <div v-if="comment.length">
-      <div class="DiscussionArea-item" v-for="item in comment" :key="item.id">
+      <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': item.operator === userInfo.user_id}" v-for="item in comment" :key="item.id">
         <div>
           <span class="DiscussionArea-item-user">{{item.user_name}}</span>
           <span class="DiscussionArea-item-time">{{FormatRelativeTime(item.create_time)}}</span>
@@ -130,6 +130,10 @@ const useCommit = async () => {
     position: relative;
     border: 1px solid #ccc;
     cursor: pointer;
+
+    &-own {
+      background-color: #ebeef5;
+    }
 
     &-user {
       display: inline-block;
