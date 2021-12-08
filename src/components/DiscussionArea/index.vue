@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-07 17:51:37
+ * @LastEditTime : 2021-12-08 20:06:07
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
@@ -132,7 +132,7 @@ const useCommit = async () => {
     cursor: pointer;
 
     &-own {
-      background-color: #ebeef5;
+      background-color: #f7f7f7;
     }
 
     &-user {
