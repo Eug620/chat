@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-29 18:34:51
- * @LastEditTime : 2021-12-06 17:43:36
+ * @LastEditTime : 2021-12-09 11:12:58
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/detail/index.vue
@@ -17,7 +17,7 @@
           <div v-html="useHtml" class="markdown-body"></div>
         </template>
       </el-card>
-      <el-card v-if="!isLoading" shadow="never" class="view-detail-comment border-0">
+      <el-card shadow="never" class="view-detail-comment border-0">
         <DiscussionArea/>
       </el-card>
     </el-col>
