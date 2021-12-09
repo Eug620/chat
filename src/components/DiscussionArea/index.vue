@@ -1,37 +1,26 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-08 20:06:07
+ * @LastEditTime : 2021-12-09 14:20:56
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
 -->
 <template>
   <div class="DiscussionArea" v-loading="comment_loading">
-    <div v-if="comment.length">
-      <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': item.operator === userInfo.user_id}" v-for="item in comment" :key="item.id">
-        <div>
-          <span class="DiscussionArea-item-user">{{item.user_name}}</span>
-          <span class="DiscussionArea-item-time">{{FormatRelativeTime(item.create_time)}}</span>
-        </div>
-        <div class="DiscussionArea-item-content">{{item.content}}</div>
+    <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': isLogin && (item.operator === userInfo.user_id)}" v-for="item in comment" :key="item.id">
+      <div>
+        <span class="DiscussionArea-item-user">{{item.user_name}}</span>
+        <span class="DiscussionArea-item-time">{{FormatRelativeTime(item.create_time)}}</span>
       </div>
+      <div class="DiscussionArea-item-content">{{item.content}}</div>
     </div>
-    <div>
-      <el-input
-        v-model="commentValue"
-        :rows="2"
-        type="textarea"
-        class="DiscussionArea-textarea"
-        placeholder="说些什么..."
-      />
-      <el-button
-        :loading="create_comment"
-        type="primary"
-        :disabled="!isLogin || !commentValue"
-        @click="useCommit"
-      >{{!isLogin ? '请先登录' : '发布'}}</el-button>
-    </div>
+    <el-input v-model="commentValue" placeholder="说些什么...">
+      <template #prepend>{{isLogin ? userInfo.user_name : '请登录'}}</template>
+      <template #append>
+        <el-button :icon="Promotion"  :disabled="!isLogin || !commentValue" @click="useCommit"></el-button>
+      </template>
+    </el-input>
   </div>
 </template>
 
@@ -43,6 +32,7 @@ import servers from "/@/server";
 import { useUserStore } from "/@/store/User";
 import { storeToRefs } from "pinia";
 import utils from "/@/utils/index.js";
+import { Promotion } from '@element-plus/icons'
 
 const UserStore = useUserStore();
 const { isLogin, userInfo } = storeToRefs(UserStore);
