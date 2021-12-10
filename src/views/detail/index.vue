@@ -83,7 +83,7 @@ const useGetDetail = async () => {
       article_content.value = res.result.article_content;
       article_describe.value = res.result.article_describe;
       article_title.value = res.result.article_title;
-      author.value = res.result.author;
+      author.value = res.result.user_name;
       create_time.value = res.result.create_time;
       page_views.value = res.result.page_views;
     } else {

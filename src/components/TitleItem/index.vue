@@ -17,7 +17,7 @@
       <div :class="`Title-Item-index Title-Item-index-${index}`" v-if="isShowIndex">{{index + 1}}</div>
       <div class="Title-Item-container">
         <p v-if="!isShowIndex" style="margin-bottom:10px;">
-          {{ Article.author }}
+          {{ Article.user_name }}
           <el-divider direction="vertical"></el-divider>
           {{ FormatTimerSecond(Article.create_time) }}
           <!-- <el-divider direction="vertical"></el-divider> -->
