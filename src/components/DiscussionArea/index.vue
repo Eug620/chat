@@ -1,22 +1,44 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-09 14:20:56
+ * @LastEditTime : 2021-12-22 18:06:47
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
 -->
 <template>
   <div class="DiscussionArea" v-loading="comment_loading">
-    <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': isLogin && (item.operator === userInfo.user_id)}" v-for="item in comment" :key="item.id">
+    <el-button type="text" size="mini" @click="useCommenUser" class="DiscussionArea-item-content-call-commen">回复作者</el-button>
+    <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': isLogin && (item.operator === userInfo.user_id)}" v-for="item in comment" :key="item.id" >
       <div>
-        <span class="DiscussionArea-item-user">{{item.user_name}}</span>
+        <span class="DiscussionArea-item-user">{{item.operator_name}}</span>
         <span class="DiscussionArea-item-time">{{FormatRelativeTime(item.create_time)}}</span>
+        <span class="DiscussionArea-item-commen" v-if="item.children.length">{{item.children.length}}条评论</span>
       </div>
       <div class="DiscussionArea-item-content">{{item.content}}</div>
+      <div class="DiscussionArea-item-content-call">
+        <el-button type="text" size="mini" class="DiscussionArea-item-content-call-show" @click="() => item.isShowChildren = !item.isShowChildren" v-if="item.children.length">{{item.isShowChildren ? '收起评论' : '查看评论'}}</el-button>
+        <el-button type="text" size="mini" @click="useCommen(item, true)" class="DiscussionArea-item-content-call-commen">回复</el-button>
+      </div>
+      <el-collapse-transition>
+        <div style="margin-top:20px;" v-show="item.children.length && item.isShowChildren">
+          <div class="DiscussionArea-inner" :class="{'DiscussionArea-item-own': isLogin && (inner.operator === userInfo.user_id)}" v-for="inner in item.children" :key="inner.id">
+            <div>
+              <span class="DiscussionArea-item-user">{{inner.operator_name}}</span>
+              <span class="DiscussionArea-item-call">回复</span>
+              <span class="DiscussionArea-item-user">{{inner.comment_name}}</span>
+              <span class="DiscussionArea-item-time">{{FormatRelativeTime(inner.create_time)}}</span>
+            </div>
+            <div class="DiscussionArea-item-content">{{inner.content}}</div>
+            <div class="DiscussionArea-item-content-call">
+              <el-button type="text" size="mini" @click="useCommen(inner)" class="DiscussionArea-item-content-call-commen">回复</el-button>
+            </div>
+          </div>
+        </div>
+      </el-collapse-transition>
     </div>
     <el-input v-model="commentValue" placeholder="说些什么...">
-      <template #prepend>{{isLogin ? userInfo.user_name : '请登录'}}</template>
+      <template #prepend>{{isLogin ? `${userInfo.user_name} 回复 ${tname}` : '请登录'}}</template>
       <template #append>
         <el-button :icon="Promotion"  :disabled="!isLogin || !commentValue" @click="useCommit"></el-button>
       </template>
@@ -25,7 +47,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import servers from "/@/server";
@@ -33,7 +55,6 @@ import { useUserStore } from "/@/store/User";
 import { storeToRefs } from "pinia";
 import utils from "/@/utils/index.js";
 import { Promotion } from '@element-plus/icons'
-
 const UserStore = useUserStore();
 const { isLogin, userInfo } = storeToRefs(UserStore);
 const { FormatRelativeTime } = utils;
@@ -41,6 +62,10 @@ const { FormatRelativeTime } = utils;
 const Route = useRoute();
 const comment = ref([]);
 const comment_loading = ref(true);
+
+const props = defineProps({
+  userProps: Object
+})
 const useGetComment = async () => {
   try {
     comment_loading.value = true;
@@ -48,7 +73,10 @@ const useGetComment = async () => {
       article_id: Route.query.id
     });
     if (res.code === 200) {
-      comment.value = res.result;
+      comment.value = res.result.map(item => {
+        item['isShowChildren'] = false
+        return item
+      });
     } else {
       ElNotification({
         title: "警告",
@@ -68,6 +96,29 @@ const useGetComment = async () => {
 };
 useGetComment();
 
+
+const pid = ref(Route.query.id)
+const tid = ref(props.userProps.id)
+const tname = ref(props.userProps.name)
+
+watch(() => props.userProps, v => {
+  useCommenUser()
+}, { deep: true })
+const useCommenUser = () => {
+  pid.value = Route.query.id
+  tid.value = props.userProps.id
+  tname.value = props.userProps.name
+}
+const useCommen = (val, isChildren) => {
+  if (isChildren) {
+    pid.value = val.id
+  } else {
+    pid.value = val.pid
+  }
+  tid.value = val.operator
+  tname.value = val.operator_name
+}
+
 const commentValue = ref("");
 const create_comment = ref(false);
 const useCommit = async () => {
@@ -75,7 +126,8 @@ const useCommit = async () => {
     create_comment.value = true;
     let res = await servers.CreateComment({
       article_id: Route.query.id,
-      pid: Route.query.id,
+      pid: pid.value,
+      tid: tid.value,
       content: commentValue.value,
       operator: userInfo.value.user_id
     });
@@ -113,6 +165,12 @@ const useCommit = async () => {
   &-textarea {
     margin: 10px 0;
   }
+  &-inner{
+    position: relative;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: rgba(247,248,250,.7);
+  }
 
   &-item {
     margin: 10px 0;
@@ -122,49 +180,76 @@ const useCommit = async () => {
     cursor: pointer;
 
     &-own {
-      background-color: #f7f7f7;
+      color: #409eff;
     }
 
     &-user {
       display: inline-block;
       margin-right: 10px;
       margin-bottom: 10px;
+      color: #252933;
+    }
+    &-call {
+      color: #8a919f;
+      margin-right: 10px;
     }
     &-time {
       color: #ccc;
     }
+    &-commen {
+      color: #ccc;
+      margin-left: 10px;
+    }
+
     &-content {
+      padding-top: 10px;
       padding-left: 20px;
+      font-style: italic;
+      text-decoration: underline;
+
+      &-call{
+        text-align: right;
+
+        &-show {
+          font-weight: normal;
+          color: #909399;
+        }
+        &-commen{
+          font-weight: normal;
+          color: #909399;
+
+        }
+      }
     }
 
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      transition: 0.3s ease-in-out;
-    }
+    // &::before,
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   width: 20px;
+    //   height: 20px;
+    //   transition: 0.3s ease-in-out;
+    // }
 
-    &::before {
-      top: -5px;
-      left: -5px;
-      border-top: 1px solid #03a9f3;
-      border-left: 1px solid #03a9f3;
-    }
+    // &::before {
+    //   top: -5px;
+    //   left: -5px;
+    //   border-top: 1px solid #03a9f3;
+    //   border-left: 1px solid #03a9f3;
+    // }
 
-    &::after {
-      right: -5px;
-      bottom: -5px;
-      border-bottom: 1px solid #03a9f3;
-      border-right: 1px solid #03a9f3;
-    }
+    // &::after {
+    //   right: -5px;
+    //   bottom: -5px;
+    //   border-bottom: 1px solid #03a9f3;
+    //   border-right: 1px solid #03a9f3;
+    // }
 
-    &:hover::before,
-    &:hover::after {
-      width: calc(100% + 9px);
-      height: calc(100% + 9px);
-    }
+    // &:hover::before,
+    // &:hover::after {
+    //   width: calc(100% + 9px);
+    //   height: calc(100% + 9px);
+    // }
   }
 }
 </style>

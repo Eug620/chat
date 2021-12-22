@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-29 18:34:51
- * @LastEditTime : 2021-12-09 11:12:58
+ * @LastEditTime : 2021-12-22 17:45:35
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/detail/index.vue
@@ -18,7 +18,7 @@
         </template>
       </el-card>
       <el-card shadow="never" class="view-detail-comment border-0">
-        <DiscussionArea/>
+        <DiscussionArea :userProps="userProps"/>
       </el-card>
     </el-col>
     <el-col :span="8">
@@ -31,7 +31,7 @@
 import * as marked from "marked";
 import hljs from "highlight.js";
 import servers from "/@/server";
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 import utils from "/@/utils/index.js";
 
 import { ElNotification } from "element-plus";
@@ -62,6 +62,11 @@ const article_title = ref("");
 const author = ref("");
 const create_time = ref(0);
 const page_views = ref(0);
+
+const userProps = reactive({
+  id: '',
+  name: ''
+})
 const PropsInformationInfo = computed(() => {
   return {
     title: author.value,
@@ -86,6 +91,9 @@ const useGetDetail = async () => {
       author.value = res.result.user_name;
       create_time.value = res.result.create_time;
       page_views.value = res.result.page_views;
+
+      userProps.id = res.result.author
+      userProps.name = res.result.user_name
     } else {
       ElNotification({
         title: "警告",
