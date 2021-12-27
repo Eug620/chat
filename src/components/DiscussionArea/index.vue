@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-06 17:43:15
- * @LastEditTime : 2021-12-22 18:06:47
+ * @LastEditTime : 2021-12-27 17:56:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/DiscussionArea/index.vue
@@ -9,27 +9,27 @@
 <template>
   <div class="DiscussionArea" v-loading="comment_loading">
     <el-button type="text" size="mini" @click="useCommenUser" class="DiscussionArea-item-content-call-commen">回复作者</el-button>
-    <div class="DiscussionArea-item" :class="{'DiscussionArea-item-own': isLogin && (item.operator === userInfo.user_id)}" v-for="item in comment" :key="item.id" >
+    <div class="DiscussionArea-item" v-for="item in comment" :key="item.id" >
       <div>
         <span class="DiscussionArea-item-user">{{item.operator_name}}</span>
         <span class="DiscussionArea-item-time">{{FormatRelativeTime(item.create_time)}}</span>
         <span class="DiscussionArea-item-commen" v-if="item.children.length">{{item.children.length}}条评论</span>
       </div>
-      <div class="DiscussionArea-item-content">{{item.content}}</div>
+      <div class="DiscussionArea-item-content" :class="{'DiscussionArea-item-own': isLogin && (item.operator === userInfo.user_id)}">{{item.content}}</div>
       <div class="DiscussionArea-item-content-call">
         <el-button type="text" size="mini" class="DiscussionArea-item-content-call-show" @click="() => item.isShowChildren = !item.isShowChildren" v-if="item.children.length">{{item.isShowChildren ? '收起评论' : '查看评论'}}</el-button>
         <el-button type="text" size="mini" @click="useCommen(item, true)" class="DiscussionArea-item-content-call-commen">回复</el-button>
       </div>
       <el-collapse-transition>
         <div style="margin-top:20px;" v-show="item.children.length && item.isShowChildren">
-          <div class="DiscussionArea-inner" :class="{'DiscussionArea-item-own': isLogin && (inner.operator === userInfo.user_id)}" v-for="inner in item.children" :key="inner.id">
+          <div class="DiscussionArea-inner" v-for="inner in item.children" :key="inner.id">
             <div>
               <span class="DiscussionArea-item-user">{{inner.operator_name}}</span>
               <span class="DiscussionArea-item-call">回复</span>
               <span class="DiscussionArea-item-user">{{inner.comment_name}}</span>
               <span class="DiscussionArea-item-time">{{FormatRelativeTime(inner.create_time)}}</span>
             </div>
-            <div class="DiscussionArea-item-content">{{inner.content}}</div>
+            <div class="DiscussionArea-item-content" :class="{'DiscussionArea-item-own': isLogin && (inner.operator === userInfo.user_id)}">{{inner.content}}</div>
             <div class="DiscussionArea-item-content-call">
               <el-button type="text" size="mini" @click="useCommen(inner)" class="DiscussionArea-item-content-call-commen">回复</el-button>
             </div>
@@ -205,7 +205,7 @@ const useCommit = async () => {
       padding-top: 10px;
       padding-left: 20px;
       font-style: italic;
-      text-decoration: underline;
+      // text-decoration: underline;
 
       &-call{
         text-align: right;
