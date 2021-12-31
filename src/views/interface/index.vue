@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:31
- * @LastEditTime : 2021-12-03 17:02:18
+ * @LastEditTime : 2021-12-31 18:15:51
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/interface/index.vue
@@ -14,7 +14,7 @@
         type="daterange"
         start-placeholder="Start date"
         end-placeholder="End date"
-        :disabled-date="disabledDate"
+        value-format="YYYY-MM-DD"
         @change="useChange"
       ></el-date-picker>
     </el-card>
@@ -42,37 +42,24 @@ const belongList = reactive({});
 const TypeList = reactive([]);
 const NameList = reactive([]);
 const xAxis_data = reactive([]);
-const disabledDate = time => {
-  const end = new Date(cache_xAxis_data[cache_xAxis_data.length - 1]);
-  const start = new Date(cache_xAxis_data[0]);
-  return (
-    time.getTime() > end.getTime() ||
-    time.getTime() < start.getTime() - 86400000
-  );
-};
 const useChange = async () => {
-  const start = datePicker.value[0]
-  const end = datePicker.value[1]
-  let _xAxis_data = []
-  cache_xAxis_data.forEach((item, idx) => {
-    const timeNow = new Date(`${item} 00:00:00`)
-    if (timeNow.getTime() >= start.getTime() && timeNow.getTime() <= end.getTime()) {
-      _xAxis_data.push(item)
-    }
-  })
-  xAxis_data.splice(0,xAxis_data.length)
-  xAxis_data.push(..._xAxis_data)
+  await useGetInterfaceLogData()
   await useRefreshCharts()
   
 }
 const useGetInterfaceLogData = async () => {
   try {
-    let res = await servers.GetInterfaceLog();
+    let res = await servers.GetInterfaceLog({
+      valid_from: datePicker.value[0],
+      valid_to: datePicker.value[1]
+    });
     if (res.code === 200) {
       logData.value = res.result;
+      cache_xAxis_data.splice(0)
+      xAxis_data.splice(0)
       cache_xAxis_data.push(...res.result.map(item => item.log_date))
       xAxis_data.push(...res.result.map(item => item.log_date));
-      datePicker.value = [new Date(cache_xAxis_data[0]), new Date(cache_xAxis_data[cache_xAxis_data.length-1]) ]
+      // datePicker.value = [new Date(cache_xAxis_data[0]), new Date(cache_xAxis_data[cache_xAxis_data.length-1]) ]
     } else {
       ElNotification({
         title: "警告",
@@ -196,7 +183,7 @@ const useRefreshCharts = () => {
 }
 onMounted(async () => {
   await useGetInterfaceDetail();
-  await useGetInterfaceLogData();
+  // await useGetInterfaceLogData();
   await useRefreshCharts()
   
 });

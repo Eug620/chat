@@ -12,8 +12,8 @@
     </div>
     <div class="chat-container-section">
       <div class="chat-container-section-layout">
-        <router-view v-slot="{ Component, route }">
-          <transition name="slide-fade" mode="out-in">
+        <transition name="el-fade-in">
+          <router-view v-slot="{ Component, route }">
             <template v-if="route.meta.keepAlive">
               <keep-alive>
                 <component :is="Component" />
@@ -22,8 +22,8 @@
             <template v-else>
               <component :is="Component" />
             </template>
-          </transition>
-        </router-view>
+          </router-view>
+        </transition>
       </div>
     </div>
     <el-backtop :visibility-height="0" @click="useToCreate">
@@ -41,10 +41,13 @@ import { useHomeStore } from "/@/store/Home";
 import { useRouteStore } from "/@/store/Route";
 import { useUserStore } from "/@/store/User";
 const HomeStore = useHomeStore();
-const RouteStore = useRouteStore()
+const RouteStore = useRouteStore();
 const UserStore = useUserStore();
 
-const { getRouteMetaIsLabel, storeRouter: { value } } = storeToRefs(RouteStore)
+const {
+  getRouteMetaIsLabel,
+  storeRouter: { value }
+} = storeToRefs(RouteStore);
 
 const {
   getNavigationHeight,
@@ -57,12 +60,14 @@ const {
 UserStore.refreshUserInfo();
 
 const useTopHeight = computed(() => {
-  return getRouteMetaIsLabel.value ? getNavigationHeight.value : getTopHeight.value
-})
+  return getRouteMetaIsLabel.value
+    ? getNavigationHeight.value
+    : getTopHeight.value;
+});
 
 const useToCreate = () => {
-  value.push('create')
-}
+  value.push("create");
+};
 
 const overScroll = ref(false);
 const useIsShow = computed(() => {
@@ -106,9 +111,9 @@ onMounted(() => {
 onBeforeMount(() => {
   window.removeEventListener("scroll", useScrollChange);
 });
-const useTops = computed(() => tops.value)
-provide('useIsShow', useIsShow)
-provide('useTops', useTops)
+const useTops = computed(() => tops.value);
+provide("useIsShow", useIsShow);
+provide("useTops", useTops);
 </script>
 
 <style lang="scss">
