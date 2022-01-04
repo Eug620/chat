@@ -132,7 +132,7 @@ provide("useTops", useTops);
     width: 100%;
     height: v-bind(useTopHeight);
     background-color: #fff;
-    transition: 0.3s all linear;
+    transition: 0.3s all ease;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 
     &-navigation {

@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-22 11:22:48
- * @LastEditTime : 2021-12-03 16:52:22
+ * @LastEditTime : 2022-01-04 15:17:35
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/index.vue
@@ -66,7 +66,7 @@ const useOffset = computed(() => {
 <style lang="scss">
 .chat-home-right-views{
   .el-affix--fixed{
-    transition:  0.3s all linear;
+    transition:  0.3s all ease;
   }
 
   &-search{
