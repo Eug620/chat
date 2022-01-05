@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-12-01 11:43:44
- * @LastEditTime : 2021-12-02 17:36:07
+ * @LastEditTime : 2022-01-04 19:56:44
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/components/RightViews/UserInformation.vue
@@ -102,7 +102,7 @@ const useLogin = async () => {
   try {
     let res = await servers.Login(mergeProps());
     if (res.code === 200) {
-      UserStore.saveUserInfo(res.result.data)
+      UserStore.saveUserInfo({...res.result.data, token: res.token})
       UserStore.refreshUserInfo()
       ElNotification({
         title: "欢迎~",

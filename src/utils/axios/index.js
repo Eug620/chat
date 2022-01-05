@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-09 16:25:28
- * @LastEditTime : 2021-09-13 16:58:27
+ * @LastEditTime : 2022-01-05 11:16:31
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/utils/axios/index.js
@@ -37,9 +37,13 @@ const service = Axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
-    // 在请求发送之前做一些处理
-    // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-    config.headers['X-Token'] = 'XXXXXXXX'
+    const info = JSON.parse(localStorage.getItem('USER_INFO'))
+    if (info) {
+      // 在请求发送之前做一些处理
+      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+      config.headers['X-Token'] = 'XXXXXXXX'
+      config.headers['authorization'] = info.token
+    }
     return config
   },
   error => {
