@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:46
- * @LastEditTime : 2022-01-14 19:47:10
+ * @LastEditTime : 2022-01-14 19:57:23
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/user/index.vue
@@ -86,7 +86,7 @@ const useToBottom = () => {
   if (doms.scrollTop + doms.offsetHeight >= doms.scrollHeight) {
     return false;
   }
-  requestAnimationFrame(go);
+  requestAnimationFrame(useToBottom);
 };
 
 socket.on("message", msg => {
