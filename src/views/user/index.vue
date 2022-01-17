@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:46
- * @LastEditTime : 2022-01-14 19:57:23
+ * @LastEditTime : 2022-01-17 15:09:29
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/user/index.vue
@@ -16,7 +16,7 @@
           :class="`item-${msg.id}`"
           :key="msg.id"
         >
-          <div v-if="userInfo.user_id === msg.user_id" class="message-item-owen">
+          <div v-if="isLogin && userInfo.user_id === msg.user_id" class="message-item-owen">
             <span class="publickStyle back">{{ msg.message }}</span>
             <el-avatar style="margin-left:15px;">{{ msg.user_name }}</el-avatar>
           </div>
@@ -27,7 +27,7 @@
         </div>
       </el-scrollbar>
       <div class="chat-user-input">
-        <el-input v-model.trim="sendMessage" placeholder="说些什么...">
+        <el-input :disabled="!isLogin" v-model.trim="sendMessage" :placeholder="!isLogin ? '请先登录': '说些什么...'">
           <template #append>
             <el-button :icon="Promotion" :disabled="!isLogin || !sendMessage" @click="useSend"></el-button>
           </template>
