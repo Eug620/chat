@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:46
- * @LastEditTime : 2022-01-20 17:26:38
+ * @LastEditTime : 2022-01-20 17:42:23
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/user/index.vue
@@ -179,13 +179,13 @@ const useSend = () => {
 .timer-right{
   position: absolute;
   right: 0px;
-  width: 120px;
+  width: 130px;
   color: #ccc;
   bottom: -20px;
 }
 .timer-left{
   position: absolute;
-  width: 120px;
+  width: 130px;
   color: #ccc;
   left: 0;
   bottom: -20px;
