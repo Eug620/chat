@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:46
- * @LastEditTime : 2022-01-17 15:09:29
+ * @LastEditTime : 2022-01-20 17:26:38
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/user/index.vue
@@ -17,12 +17,23 @@
           :key="msg.id"
         >
           <div v-if="isLogin && userInfo.user_id === msg.user_id" class="message-item-owen">
-            <span class="publickStyle back">{{ msg.message }}</span>
+            
+            <span class="publickStyle back">
+              {{ msg.message }}
+              <span class="timer-right">{{FormatTimerSecond(msg.create_time)}}</span>
+            </span>
             <el-avatar style="margin-left:15px;">{{ msg.user_name }}</el-avatar>
           </div>
           <div v-else>
+
             <el-avatar style="margin-right:15px;">{{ msg.user_name }}</el-avatar>
-            <span class="publickStyle emptyPub left">{{ msg.message }}</span>
+            <span class="publickStyle emptyPub left">
+              {{ msg.message }}
+              <span class="timer-left">
+                {{FormatTimerSecond(msg.create_time)}}
+              </span>
+            </span>
+          
           </div>
         </div>
       </el-scrollbar>
@@ -45,6 +56,9 @@ import io from "socket.io-client";
 import { Promotion } from "@element-plus/icons";
 import servers from "/@/server";
 import { ElNotification } from "element-plus";
+import utils from "/@/utils/index.js";
+
+const { FormatTimerSecond } = utils;
 
 const UserStore = useUserStore();
 const { isLogin, userInfo } = storeToRefs(UserStore);
@@ -158,9 +172,23 @@ const useSend = () => {
   max-width: 80%;
   border-radius: 15px;
   text-align: center;
-  padding: 10px 20px;
+  padding: 12px 20px 10px;
   box-sizing: border-box;
   position: relative;
+}
+.timer-right{
+  position: absolute;
+  right: 0px;
+  width: 120px;
+  color: #ccc;
+  bottom: -20px;
+}
+.timer-left{
+  position: absolute;
+  width: 120px;
+  color: #ccc;
+  left: 0;
+  bottom: -20px;
 }
 .back {
   background: #ccc;
