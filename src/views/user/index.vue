@@ -1,7 +1,7 @@
 <!--
  * @Author       : Eug
  * @Date         : 2021-11-23 12:10:46
- * @LastEditTime : 2022-01-20 17:42:23
+ * @LastEditTime : 2022-02-11 14:34:23
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /chat/src/views/user/index.vue
@@ -17,7 +17,6 @@
           :key="msg.id"
         >
           <div v-if="isLogin && userInfo.user_id === msg.user_id" class="message-item-owen">
-            
             <span class="publickStyle back">
               {{ msg.message }}
               <span class="timer-right">{{FormatTimerSecond(msg.create_time)}}</span>
@@ -25,7 +24,6 @@
             <el-avatar style="margin-left:15px;">{{ msg.user_name }}</el-avatar>
           </div>
           <div v-else>
-
             <el-avatar style="margin-right:15px;">{{ msg.user_name }}</el-avatar>
             <span class="publickStyle emptyPub left">
               {{ msg.message }}
@@ -33,7 +31,6 @@
                 {{FormatTimerSecond(msg.create_time)}}
               </span>
             </span>
-          
           </div>
         </div>
       </el-scrollbar>
@@ -175,6 +172,7 @@ const useSend = () => {
   padding: 12px 20px 10px;
   box-sizing: border-box;
   position: relative;
+  color: #000 !important;
 }
 .timer-right{
   position: absolute;
